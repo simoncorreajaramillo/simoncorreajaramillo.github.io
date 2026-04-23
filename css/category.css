@@ -1,0 +1,557 @@
+/* Carga la fuente decorativa usada en algunos titulos grandes internos. | EN: Loads the decorative font used in some large internal titles. */
+@font-face {
+  font-family: 'Race Champion';
+  src: url("../fonts/Race Champion.otf") format("opentype");
+  font-display: swap;
+}
+
+/* Variables globales compartidas por todas las paginas de categorias. | EN: Global variables shared by all category pages. */
+:root {
+  --color-bg-main: rgb(5, 5, 5); /* fondo principal oscuro | EN: dark main background */
+  --color-bg-secondary: rgb(10, 20, 10); /* fondo secundario oscuro | EN: dark secondary background */
+  --color-primary: rgb(57, 255, 20); /* verde principal de la marca | EN: main brand green */
+  --color-primary-medium: rgb(120, 255, 80); /* verde intermedio para detalles | EN: medium green for details */
+  --color-primary-dark: rgb(20, 120, 20); /* verde oscuro para degradados | EN: dark green for gradients */
+  --color-contrast: rgb(255, 183, 59); /* acento secundario compartido | EN: shared secondary accent */
+  --color-contrast-soft: rgb(255, 214, 122); /* version suave del acento secundario | EN: soft version of the secondary accent */
+  --color-contrast-rgb: 255, 183, 59; /* version RGB del acento secundario | EN: RGB version of the secondary accent */
+  --gradient-accent: linear-gradient(90deg, var(--color-primary), var(--color-contrast)); /* degradado principal mixto | EN: mixed main gradient */
+  --category-panel-surface:
+    linear-gradient(180deg, rgba(10, 13, 10, 0.9), rgba(5, 7, 5, 0.84)),
+    radial-gradient(circle at top right, rgba(57, 255, 20, 0.08), transparent 42%),
+    radial-gradient(circle at bottom left, rgba(var(--color-contrast-rgb), 0.1), transparent 46%);
+  --category-card-surface:
+    linear-gradient(145deg, rgba(8, 12, 8, 0.96), rgba(20, 72, 20, 0.92)),
+    radial-gradient(circle at top right, rgba(57, 255, 20, 0.1), transparent 42%),
+    radial-gradient(circle at bottom left, rgba(var(--color-contrast-rgb), 0.12), transparent 48%);
+  --category-card-surface-alt:
+    linear-gradient(145deg, rgba(7, 10, 7, 0.96), rgba(14, 56, 14, 0.94)),
+    radial-gradient(circle at top left, rgba(var(--color-contrast-rgb), 0.1), transparent 44%);
+  --color-text-main: rgb(234, 234, 234); /* color principal del texto | EN: main text color */
+  --color-text-secondary: rgb(160, 160, 160); /* color secundario del texto | EN: secondary text color */
+  --font-display: 'Race Champion'; /* fuente decorativa | EN: display font */
+  --font-title: 'Clash Display'; /* fuente para titulos | EN: font for headings */
+  --font-body: 'Clash Display'; /* fuente para texto general | EN: font for general text */
+  --transition: 0.3s ease; /* transicion compartida | EN: shared transition */
+}
+
+/* Hace que padding y border se cuenten dentro del ancho total. | EN: Makes padding and border count inside the total width. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Define el fondo y la tipografia general de las paginas internas. | EN: Defines the background and general typography of the inner pages. */
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--color-text-main);
+  background:
+    radial-gradient(circle at top right, rgba(57, 255, 20, 0.16), transparent 32%),
+    radial-gradient(circle at bottom left, rgba(var(--color-contrast-rgb), 0.14), transparent 34%),
+    linear-gradient(145deg, rgb(5, 5, 5), rgb(10, 20, 10));
+}
+
+/* Evita que las imagenes se salgan de sus contenedores. | EN: Prevents images from overflowing their containers. */
+img {
+  max-width: 100%;
+}
+
+/* Crea el espacio exterior general de la pagina de categoria. | EN: Creates the general outer spacing of the category page. */
+.category-page {
+  padding: 28px 20px 60px;
+}
+
+/* Limita el ancho maximo y centra todo el contenido interno. | EN: Limits the maximum width and centers all inner content. */
+.category-frame {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* Construye la cabecera interna con logo y boton de regreso. | EN: Builds the inner header with logo and back button. */
+.category-header {
+  padding: 18px 22px;
+  border: 1px solid rgba(57, 255, 20, 0.16);
+  border-radius: 26px;
+  background: var(--category-panel-surface);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Controla el tamano del logo dentro de la cabecera interna. | EN: Controls the logo size inside the inner header. */
+.category-logo img {
+  height: 56px;
+  display: block;
+}
+
+/* Da estilo al enlace para volver al portfolio principal. | EN: Styles the link that goes back to the main portfolio. */
+.category-back {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(57, 255, 20, 0.22);
+  background: var(--gradient-accent);
+  color: black;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Divide la pagina interna en bloque descriptivo y biblioteca de proyectos. | EN: Splits the inner page into a descriptive block and a project library. */
+.category-main {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
+  gap: 26px;
+}
+
+/* Organiza la navegacion entre categorias en una fila flexible. | EN: Organizes navigation between categories in a flexible row. */
+.category-nav {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Estilo base de cada enlace de categoria. | EN: Base style of each category link. */
+.category-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(57, 255, 20, 0.18);
+  background: var(--category-panel-surface);
+  color: var(--color-text-main);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+/* Estilo de la pequena pastilla numerada que muestra el orden. | EN: Style of the small numbered pill that shows the order. */
+.category-nav .nav-order {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(57, 255, 20, 0.18);
+  background: rgba(var(--color-contrast-rgb), 0.1);
+  color: var(--color-primary-medium);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+/* Pequeno efecto hover para que el enlace se sienta interactivo. | EN: Small hover effect to make the link feel interactive. */
+.category-nav a:hover {
+  transform: translateY(-2px);
+  border-color: rgba(57, 255, 20, 0.42);
+}
+
+/* Marca visualmente la categoria activa. | EN: Visually marks the active category. */
+.category-nav a.is-active {
+  background: var(--gradient-accent);
+  color: black;
+  border-color: transparent;
+}
+
+/* Ajusta la mini pastilla numerada cuando la categoria esta activa. | EN: Adjusts the mini numbered pill when the category is active. */
+.category-nav a.is-active .nav-order {
+  background: rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: black;
+}
+
+/* Estilo compartido de los dos paneles principales internos. | EN: Shared style of the two main inner panels. */
+.category-hero,
+.category-library {
+  padding: clamp(24px, 4vw, 36px);
+  border: 1px solid rgba(57, 255, 20, 0.16);
+  border-radius: 32px;
+  background: var(--category-panel-surface);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.22);
+}
+
+/* Etiqueta pequena superior tipo "Category Folder". | EN: Small top label like "Category Folder". */
+.category-label {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-primary-medium);
+}
+
+/* Titulo grande principal de la categoria. | EN: Large main title of the category. */
+.category-title {
+  margin: 0 0 14px;
+  font-family: var(--font-title);
+  font-size: clamp(34px, 5vw, 62px);
+  line-height: 0.95;
+}
+
+/* Colorea la palabra destacada dentro del titulo. | EN: Colors the highlighted word inside the title. */
+.category-title span {
+  color: var(--color-primary);
+}
+
+/* Parrafo principal descriptivo de la categoria. | EN: Main descriptive paragraph of the category. */
+.category-description {
+  margin: 0;
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+}
+
+/* Grid interno para los datos rapidos de la categoria. | EN: Inner grid for the category quick facts. */
+.category-stats {
+  margin-top: 22px;
+  display: grid;
+  gap: 12px;
+}
+
+/* Tarjeta individual de dato rapido. | EN: Individual quick fact card. */
+.category-stat {
+  padding: 14px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(57, 255, 20, 0.14);
+  background: linear-gradient(145deg, rgba(var(--color-contrast-rgb), 0.08), rgba(57, 255, 20, 0.04));
+}
+
+/* Da estilo al titulo corto dentro de cada dato. | EN: Styles the short title inside each fact. */
+.category-stat strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-text-main);
+}
+
+/* Da estilo al texto secundario dentro de cada dato. | EN: Styles the secondary text inside each fact. */
+.category-stat span {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Barra corta que muestra la ruta o nombre de la carpeta. | EN: Short bar that shows the folder path or name. */
+.folder-path {
+  margin-top: 20px;
+  padding: 12px 16px;
+  border-radius: 18px;
+  background: rgba(5, 5, 5, 0.48);
+  border: 1px solid rgba(57, 255, 20, 0.12);
+  font-size: 14px;
+  color: var(--color-primary-medium);
+}
+
+/* Encabezado superior del bloque donde viven las cards de proyectos. | EN: Top header of the block where the project cards live. */
+.library-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+/* Titulo del area de proyectos internos. | EN: Title of the inner projects area. */
+.library-heading h2 {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: clamp(28px, 3vw, 40px);
+  color: var(--color-text-main);
+}
+
+/* Texto descriptivo corto del area de proyectos internos. | EN: Short descriptive text of the inner projects area. */
+.library-heading p {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+/* Grid que acomoda las cards internas de proyectos. | EN: Grid that arranges the inner project cards. */
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* Tarjeta clickeable que representa un subproyecto. | EN: Clickable card that represents a subproject. */
+.library-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 210px;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(57, 255, 20, 0.14);
+  background: var(--category-card-surface);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+/* Marco interior superior decorativo para cada card. | EN: Decorative upper inner frame for each card. */
+.library-card::before {
+  content: "";
+  position: absolute;
+  inset: 16px 16px auto;
+  height: 52%;
+  border-radius: 18px;
+  border: 1px solid rgba(234, 234, 234, 0.08);
+  background: linear-gradient(145deg, rgba(var(--color-contrast-rgb), 0.16), rgba(5, 5, 5, 0.04));
+}
+
+/* Glow decorativo circular en la esquina de cada card. | EN: Circular decorative glow in the corner of each card. */
+.library-card::after {
+  content: "";
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  right: -34px;
+  top: -34px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--color-contrast-rgb), 0.28), rgba(var(--color-contrast-rgb), 0));
+}
+
+/* Levanta un poco la card cuando el usuario pasa el mouse. | EN: Lifts the card slightly when the user hovers it. */
+.library-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(57, 255, 20, 0.32);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
+}
+
+/* Evita que las cards planeadas parezcan enlaces activos cuando aun no existe una pagina final. | EN: Prevent planned cards from looking like active links when a final page does not yet exist. */
+.planned-card {
+  cursor: default;
+}
+
+/* Mantiene una respuesta visual mas sutil para las cards planeadas. | EN: Keep a subtler visual response for planned cards. */
+.planned-card:hover {
+  transform: none;
+  border-color: rgba(57, 255, 20, 0.14);
+  box-shadow: none;
+}
+
+/* Refuerza visualmente una card que ya apunta a un proyecto real. | EN: Visually reinforces a card that already points to a real project. */
+.library-card-live {
+  border-color: rgba(57, 255, 20, 0.3);
+  box-shadow: 0 22px 42px rgba(0, 0, 0, 0.24);
+}
+
+/* Agrega una capa un poco mas luminosa para destacar proyectos publicados. | EN: Adds a slightly brighter layer to highlight published projects. */
+.library-card-live::before {
+  background: linear-gradient(145deg, rgba(var(--color-contrast-rgb), 0.22), rgba(5, 5, 5, 0.02));
+}
+
+/* Centra una card publicada que solo muestra el logo del proyecto. | EN: Center a published card that only shows the project logo. */
+.library-card-logo-only {
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+/* Etiqueta pequena que identifica el bloque o tipo de contenido. | EN: Small label that identifies the block or type of content. */
+.slot-label {
+  position: relative;
+  z-index: 1;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary-medium);
+}
+
+/* Nombre principal del proyecto o subcarpeta. | EN: Main name of the project or subfolder. */
+.slot-name {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: 24px;
+  color: var(--color-text-main);
+}
+
+/* Nota corta explicando que contenido ira en ese bloque. | EN: Short note explaining what content will go in that block. */
+.slot-note {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+/* Controla el tamano del logo del proyecto dentro de una card publicada. | EN: Control the size of the project logo inside a published card. */
+.slot-project-logo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  margin: 0;
+  align-self: center;
+}
+
+/* Acomoda pequenas etiquetas resumen dentro de una card real. | EN: Arrange small summary tags inside a real project card. */
+.slot-meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* Da estilo a las etiquetas cortas del resumen del proyecto. | EN: Style the short project summary tags. */
+.slot-chip {
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(57, 255, 20, 0.16);
+  background: rgba(var(--color-contrast-rgb), 0.1);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary-medium);
+}
+
+/* Crea una pequena llamada a la accion al final de la card real. | EN: Create a small call to action at the end of the real project card. */
+.slot-link {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-main);
+}
+
+/* Construye el layout vertical de una pagina interna de proyecto. | EN: Build the vertical layout of an inner project page. */
+.project-main {
+  margin-top: 28px;
+  display: grid;
+  gap: 26px;
+}
+
+/* Da a los paneles del proyecto la misma base visual del sistema de categorias. | EN: Give the project panels the same visual base as the category system. */
+.project-hero-panel,
+.project-library-panel {
+  padding: clamp(24px, 4vw, 36px);
+  border: 1px solid rgba(57, 255, 20, 0.16);
+  border-radius: 32px;
+  background: var(--category-panel-surface);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.22);
+}
+
+/* Divide el hero del proyecto en texto e imagen. | EN: Split the project hero into text and image. */
+.project-hero-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+  gap: 26px;
+  align-items: stretch;
+}
+
+/* Mantiene el bloque textual del proyecto organizado verticalmente. | EN: Keep the project text block organized vertically. */
+.project-hero-copy {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Crea el contenedor visual de la imagen principal del proyecto. | EN: Create the visual container for the project's main image. */
+.project-hero-visual {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+  padding: 18px;
+  border-radius: 28px;
+  border: 1px solid rgba(57, 255, 20, 0.14);
+  background: var(--category-card-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Agrega una forma de brillo decorativa en la imagen del proyecto. | EN: Add a decorative glow shape inside the project image. */
+.project-hero-visual::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: -60px;
+  bottom: -70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--color-contrast-rgb), 0.3), rgba(var(--color-contrast-rgb), 0));
+}
+
+/* Ajusta la imagen principal para que se vea limpia dentro del panel. | EN: Adjust the main image so it looks clean inside the panel. */
+.project-hero-visual img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  display: block;
+  object-fit: contain;
+}
+
+/* Permite destacar la ultima card de la historia del proyecto. | EN: Allow the last story card to stand out. */
+.project-story-highlight {
+  grid-column: span 2;
+}
+
+/* Variacion de fondo para algunas cards pares segun el tema de categoria. | EN: Background variation for some even cards depending on the category theme. */
+.theme-brand .library-card:nth-child(2n),
+.theme-web .library-card:nth-child(2n),
+.theme-campaign .library-card:nth-child(2n),
+.theme-presentation .library-card:nth-child(2n) {
+  background: var(--category-card-surface-alt);
+}
+
+/* En pantallas medianas convierte el layout principal a una sola columna. | EN: On medium screens it turns the main layout into a single column. */
+@media (max-width: 960px) {
+  .category-main {
+    grid-template-columns: 1fr;
+  }
+
+  .project-hero-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .project-story-highlight {
+    grid-column: auto;
+  }
+}
+
+/* En mobile ajusta padding, cabecera y grid interno para lectura comoda. | EN: On mobile it adjusts padding, header, and inner grid for comfortable reading. */
+@media (max-width: 640px) {
+  .category-page {
+    padding: 18px 14px 40px;
+  }
+
+  .category-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .category-nav a {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .library-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .library-grid {
+    grid-template-columns: 1fr;
+  }
+}
