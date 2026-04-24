@@ -1,0 +1,2666 @@
+/* Carga la fuente decorativa personalizada usada en el gran wordmark de portfolio. | EN: Load the custom display font used for the large portfolio wordmark. */
+@font-face {
+  font-family: 'Race Champion';
+  src: url("../fonts/Race Champion.otf") format("opentype");
+  font-display: swap;
+}
+
+/* =========================
+VARIABLES RAIZ (CONTROL GLOBAL) | EN: ROOT VARIABLES (GLOBAL CONTROL)
+========================= */
+
+:root {
+
+  /* COLORES DE FONDO | EN: BACKGROUND COLORS */
+  --color-bg-main: rgb(5, 5, 5); /* fondo principal de la pagina | EN: main page background */
+  --color-bg-secondary: rgb(10, 20, 10); /* fondo de seccion | EN: section background */
+  --color-primary: rgb(57, 255, 20); /* color de acento principal | EN: main accent color */
+  --color-primary-medium: rgb(120, 255, 80); /* acento mas claro | EN: lighter accent */
+  --color-primary-dark: rgb(20, 120, 20); /* acento mas oscuro | EN: darker accent */
+  --color-contrast: rgb(255, 183, 59); /* acento secundario para contraste global | EN: secondary accent for global contrast */
+  --color-contrast-soft: rgb(255, 214, 122); /* version suave del acento secundario | EN: soft version of the secondary accent */
+  --color-contrast-rgb: 255, 183, 59; /* version RGB separada del acento secundario | EN: split RGB version of the secondary accent */
+  --gradient-accent: linear-gradient(90deg, var(--color-primary), var(--color-contrast));
+  --gradient-page:
+    radial-gradient(circle at top right, rgba(57, 255, 20, 0.12), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(var(--color-contrast-rgb), 0.12), transparent 34%),
+    linear-gradient(145deg, rgb(5, 5, 5), rgb(9, 16, 9) 56%, rgb(7, 12, 7));
+  --gradient-nav: linear-gradient(180deg, rgba(8, 10, 8, 0.97), rgba(5, 5, 5, 0.97));
+  --gradient-section-soft:
+    radial-gradient(circle at top right, rgba(57, 255, 20, 0.1), transparent 32%),
+    radial-gradient(circle at bottom left, rgba(var(--color-contrast-rgb), 0.12), transparent 36%),
+    linear-gradient(145deg, rgb(7, 10, 7) 0%, rgb(9, 16, 9) 50%, rgb(12, 28, 12) 100%);
+  --gradient-section-strong:
+    radial-gradient(circle at top right, rgba(57, 255, 20, 0.14), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(var(--color-contrast-rgb), 0.14), transparent 34%),
+    linear-gradient(145deg, rgb(7, 10, 7) 0%, rgb(10, 18, 10) 45%, rgb(16, 44, 16) 100%);
+  --gradient-section-feature:
+    radial-gradient(circle at top right, rgba(57, 255, 20, 0.14), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(var(--color-contrast-rgb), 0.16), transparent 36%),
+    linear-gradient(145deg, rgb(8, 12, 8) 0%, rgb(11, 22, 11) 44%, rgb(18, 54, 18) 100%);
+  --gradient-panel:
+    linear-gradient(180deg, rgba(11, 14, 11, 0.88), rgba(6, 8, 6, 0.8)),
+    radial-gradient(circle at top right, rgba(57, 255, 20, 0.08), transparent 42%),
+    radial-gradient(circle at bottom left, rgba(var(--color-contrast-rgb), 0.08), transparent 46%);
+  --gradient-panel-strong:
+    linear-gradient(180deg, rgba(10, 13, 10, 0.94), rgba(5, 7, 5, 0.9)),
+    radial-gradient(circle at top right, rgba(57, 255, 20, 0.12), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(var(--color-contrast-rgb), 0.1), transparent 44%);
+  --gradient-panel-soft:
+    linear-gradient(180deg, rgba(11, 14, 11, 0.78), rgba(6, 8, 6, 0.7)),
+    radial-gradient(circle at top right, rgba(57, 255, 20, 0.06), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(var(--color-contrast-rgb), 0.08), transparent 44%);
+
+  /* COLORES PRINCIPALES | EN: PRIMARY COLORS */
+  --color-frame-highlight: rgb(0, 229, 255); /* acento adicional para el marco animado | EN: extra accent for the animated frame */
+  --color-frame-highlight-rgb: 0, 229, 255; /* version RGB del marco animado | EN: RGB version of the animated frame */
+  --color-hover-highlight: rgb(59, 255, 248); /* brillo alterno para hover de botones clave | EN: alternate glow for key button hover */
+  --color-hover-highlight-rgb: 59, 255, 248; /* version RGB separada para transparencias del hover | EN: RGB split version for hover transparencies */
+
+  /* COLORES DE TEXTO | EN: TEXT COLORS */
+  --color-text-main: rgb(234, 234, 234); /* texto principal | EN: main text */
+  --color-text-secondary: rgb(160, 160, 160); /* texto secundario | EN: secondary text */
+
+  /* FUENTES | EN: FONTS */
+  --font-display: 'Race Champion'; /* texto grande del hero | EN: big hero text */
+  --font-title: 'Clash Display'; /* titulos | EN: headings */
+  --font-body: 'Clash Display'; /* texto de cuerpo | EN: body text */
+
+  /* TAMANOS RESPONSIVE DE FUENTE | EN: RESPONSIVE FONT SIZES */
+  --h1-size: clamp(36px, 5vw, 72px); /* titulo principal | EN: main title */
+  --h2-size: clamp(26px, 3vw, 40px); /* titulo de seccion | EN: section title */
+  --body-size: clamp(14px, 1.2vw, 18px); /* texto normal | EN: normal text */
+  --small-size: clamp(12px, 1vw, 14px); /* texto pequeno | EN: small text */
+
+  /* ESPACIADO | EN: SPACING */
+  --section-padding: 120px; /* espaciado vertical | EN: vertical spacing */
+  --container-padding: 20px; /* espaciado horizontal | EN: horizontal spacing */
+  --container-max-width: 1200px; /* ancho principal del contenido en desktop | EN: main desktop content width */
+
+  /* RADIO DE BORDES | EN: BORDER RADIUS */
+  --radius-main: 30px; /* bordes redondeados por defecto | EN: default rounded corners */
+  --radius-pill: 20px; /* botones tipo pill | EN: pill buttons */
+
+  /* ANIMACION | EN: ANIMATION */
+  --transition: 0.3s ease; /* transiciones suaves | EN: smooth transitions */
+}
+
+/* =========================
+ESTILOS BASE | EN: BASE STYLES
+========================= */
+
+body {
+  margin: 0; /* elimina el margen por defecto | EN: remove default margin */
+  padding-top: 100px; /* evita que el navbar se monte sobre el contenido | EN: avoid navbar overlap */
+  font-family: var(--font-body); /* fuente del cuerpo | EN: body font */
+  line-height: 1.5; /* mejora la legibilidad por defecto | EN: improve default readability */
+  background: var(--gradient-page); /* color de fondo | EN: background color */
+  color: var(--color-text-main); /* color del texto | EN: text color */
+  overflow-x: hidden; /* evita el scroll horizontal en pantallas pequenas | EN: prevent horizontal scroll on smaller screens */
+}
+
+/* Activa un desplazamiento suave entre secciones ancladas. | EN: Enable smooth scrolling between anchored sections. */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Evita que el navbar fijo tape las secciones cuando se navega por anclas. | EN: Prevent the fixed navbar from covering sections when navigating with anchors. */
+#home,
+#about,
+#services,
+#portfolio,
+#contact {
+  scroll-margin-top: 120px;
+}
+
+/* Hace que los calculos de ancho y alto incluyan padding y bordes en todo el sitio. | EN: Make width and height calculations include padding and borders everywhere. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Mantiene las imagenes responsive para que nunca se salgan de sus contenedores. | EN: Keep images responsive so they never overflow their containers. */
+img {
+  max-width: 100%;
+}
+
+/* Bloquea el scroll mientras la pantalla de entrada esta activa. | EN: Lock scroll while the entry screen is active. */
+body.is-intro-active {
+  overflow: hidden;
+}
+
+/* Cubre por completo la home en el primer instante de entrada. | EN: Fully cover the home during the first instant of entry. */
+.entry-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 2200;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(57, 255, 20, 0.2), transparent 28%),
+    radial-gradient(circle at 82% 78%, rgba(var(--color-contrast-rgb), 0.18), transparent 30%),
+    linear-gradient(145deg, rgba(4, 5, 4, 0.98), rgba(8, 18, 8, 0.98) 56%, rgba(4, 12, 4, 0.99));
+  transition:
+    opacity 0.85s ease,
+    visibility 0.85s ease,
+    transform 0.85s ease;
+}
+
+/* Suma un marco y un velo suave para que la entrada se vea mas terminada. | EN: Add a frame and a soft veil so the entry screen feels more finished. */
+.entry-screen::before,
+.entry-screen::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.entry-screen::before {
+  inset: clamp(18px, 3vw, 34px);
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  border-radius: 34px;
+  box-shadow:
+    0 0 0 1px rgba(var(--color-contrast-rgb), 0.08) inset,
+    0 0 60px rgba(57, 255, 20, 0.08);
+}
+
+.entry-screen::after {
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.04) 22%, transparent 44%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 30%);
+  opacity: 0.85;
+}
+
+/* Agrupa el contenido visible de la portada de entrada. | EN: Group the visible content of the entry cover. */
+.entry-screen__panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 760px);
+  padding: clamp(36px, 6vw, 56px);
+  border: 1px solid rgba(57, 255, 20, 0.24);
+  border-radius: clamp(26px, 4vw, 38px);
+  background:
+    linear-gradient(180deg, rgba(10, 14, 10, 0.88), rgba(5, 8, 5, 0.84)),
+    radial-gradient(circle at top, rgba(57, 255, 20, 0.08), transparent 52%);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.45),
+    0 0 44px rgba(57, 255, 20, 0.12);
+  text-align: center;
+  backdrop-filter: blur(16px);
+}
+
+/* Da un acabado en pildora al texto superior de la entrada. | EN: Give the top entry label a pill finish. */
+.entry-screen__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 20px;
+  padding: 8px 16px;
+  border: 1px solid rgba(57, 255, 20, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(234, 234, 234, 0.76);
+  font-family: var(--font-title);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+/* Controla el tamano y brillo del logo dentro de la portada. | EN: Control the size and glow of the logo inside the cover. */
+.entry-screen__logo {
+  width: clamp(88px, 10vw, 136px);
+  margin: 0 auto 22px;
+  filter:
+    drop-shadow(0 0 14px rgba(57, 255, 20, 0.18))
+    drop-shadow(0 0 30px rgba(var(--color-contrast-rgb), 0.12));
+}
+
+/* Da presencia al nombre principal de la portada. | EN: Give presence to the main name on the cover. */
+.entry-screen__title {
+  margin: 0;
+  color: var(--color-text-main);
+  font-family: var(--font-title);
+  font-size: clamp(38px, 6.6vw, 80px);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.94;
+  text-transform: uppercase;
+}
+
+/* Muestra una descripcion corta debajo del nombre principal. | EN: Show a short description below the main name. */
+.entry-screen__subtitle {
+  width: min(100%, 560px);
+  margin: 18px auto 0;
+  color: rgba(234, 234, 234, 0.72);
+  font-size: clamp(15px, 1.5vw, 19px);
+  line-height: 1.65;
+}
+
+/* Refuerza visualmente el estado de carga de la portada. | EN: Visually reinforce the cover loading state. */
+.entry-screen__status {
+  margin: 26px 0 0;
+  color: rgba(234, 234, 234, 0.56);
+  font-family: var(--font-title);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+/* Dibuja una barra simple para el paso de entrada. | EN: Draw a simple bar for the entry transition. */
+.entry-screen__progress {
+  display: block;
+  width: min(100%, 260px);
+  height: 4px;
+  margin: 16px auto 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.entry-screen__progress::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  transform: scaleX(0.08);
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-contrast));
+  animation: entry-screen-progress 3.1s ease-out forwards;
+}
+
+/* Desvanece y suelta la portada cuando el JS indica salida. | EN: Fade and release the cover when JS signals exit. */
+.entry-screen.is-exiting {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.02);
+}
+
+.entry-screen.is-hidden {
+  display: none;
+}
+
+/* Anima el avance decorativo de la portada. | EN: Animate the decorative progress advance on the cover. */
+@keyframes entry-screen-progress {
+  from {
+    opacity: 0.4;
+    transform: scaleX(0.08);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/* Centra el contenido y mantiene el ancho de pagina bajo control. | EN: Center content and keep the page width under control. */
+.site-container {
+  width: 100%;
+  max-width: var(--container-max-width); /* ancho principal del contenido en desktop | EN: main desktop content width */
+  margin: 0 auto; /* centra el contenido | EN: center content */
+  padding: 0 var(--container-padding); /* padding lateral | EN: side padding */
+}
+
+/* =========================
+NAVBAR | EN: NAVBAR
+========================= */
+
+/* Crea una barra de navegacion fija arriba que permanece visible al hacer scroll. | EN: Create a fixed top navigation bar that stays visible while scrolling. */
+.main-nav {
+  height: 100px; /* alto del navbar | EN: navbar height */
+  background: var(--gradient-nav); /* fondo | EN: background */
+  border-bottom: 2px solid var(--color-primary); /* linea inferior | EN: bottom line */
+
+  position: fixed; /* se queda pegado arriba | EN: stick to top */
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  align-items: center; /* centrado vertical | EN: vertical center */
+  z-index: 1000; /* permanece encima | EN: stay on top */
+}
+
+/* Alinea el logo y los controles de navegacion en una sola fila horizontal. | EN: Align the logo and navigation controls on a single horizontal row. */
+.nav-flex {
+  display: flex;
+  justify-content: space-between; /* logo a la izquierda / menu a la derecha | EN: logo left / menu right */
+  align-items: center;
+  width: 100%;
+}
+
+/* Da estilo al boton hamburguesa mobile, oculto por defecto en desktop. | EN: Style the mobile hamburger button, hidden by default on desktop. */
+.nav-toggle {
+  --orbit-frame-width: 1.5px;
+  display: none;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 14px;
+  background: transparent;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  transition: var(--transition);
+}
+
+/* Dibuja las tres lineas usadas dentro del icono hamburguesa. | EN: Draw the three lines used inside the hamburger icon. */
+.nav-toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 999px;
+  transition: var(--transition);
+}
+
+/* Rota la primera linea para ayudar a convertir la hamburguesa en una X. | EN: Rotate the first line to help turn the hamburger into an X. */
+.nav-toggle.is-active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+/* Oculta la linea del medio cuando el menu mobile esta abierto. | EN: Hide the middle line when the mobile menu is open. */
+.nav-toggle.is-active span:nth-child(2) {
+  opacity: 0;
+}
+
+/* Rota la ultima linea para completar el icono de cierre. | EN: Rotate the last line to complete the close icon. */
+.nav-toggle.is-active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Distribuye los enlaces de navegacion horizontalmente en pantallas grandes. | EN: Lay out the navigation links horizontally on larger screens. */
+.nav-menu {
+  display: flex; /* distribucion horizontal | EN: horizontal layout */
+  gap: 3rem; /* espacio entre enlaces | EN: space between links */
+  list-style: none; /* elimina las vietas | EN: remove bullets */
+  margin: 0;
+  padding: 20px;
+}
+
+/* Da estilo a cada enlace de navegacion como un boton neon redondeado. | EN: Style each navigation link as a rounded neon button. */
+.nav-menu a {
+  --orbit-frame-width: 1.5px;
+  text-decoration: none; /* elimina el subrayado | EN: remove underline */
+  font-family: var(--font-body);
+  font-weight: 500;
+
+  background: var(--gradient-accent); /* degradado | EN: gradient */
+  color: black;
+
+  padding: 8px 16px; /* tamano del boton | EN: button size */
+  border-radius: var(--radius-pill); /* redondeado | EN: rounded */
+  transition: var(--transition); /* hover suave | EN: smooth hover */
+}
+
+/* Agrega un efecto de elevacion y brillo al pasar el mouse sobre un enlace del menu. | EN: Add a lift and glow effect when a navigation link is hovered. */
+.nav-menu a:hover {
+  transform: translateY(-3px) scale(1.03); /* efecto de elevacion | EN: lift effect */
+  box-shadow: 0 8px 20px rgba(57, 255, 20, 0.6); /* brillo | EN: glow */
+}
+
+/* Crea un area de seguridad alrededor del logo dentro del navbar. | EN: Create a safe area around the logo inside the navbar. */
+.nav-logo {
+  width: 180px; /* caja segura reservada para el logo en desktop | EN: reserved safe box for the logo on desktop */
+  min-width: 180px; /* evita que la caja del logo se encoja | EN: prevent the logo box from shrinking */
+  display: flex; /* centra la imagen dentro de su area segura | EN: center the image inside its safe area */
+  align-items: center; /* centra verticalmente el logo | EN: vertically center the logo */
+  justify-content: center; /* centra horizontalmente el logo | EN: horizontally center the logo */
+}
+
+/* Controla el tamano del logo dentro del navbar. | EN: Control the logo size inside the navbar. */
+.nav-logo img {
+  width: 100%; /* permite usar todo el ancho seguro del contenedor | EN: allow the image to use the container safe width */
+  height: auto; /* evita estirar el logo verticalmente | EN: prevent the logo from stretching vertically */
+  max-width: 180px; /* impide que el logo supere el maximo seguro desktop | EN: keep the logo within the safe desktop max */
+  max-height: 72px; /* limita la altura visual del logo en desktop | EN: limit the logo's visual height on desktop */
+  object-fit: contain; /* conserva la proporcion original del logo | EN: preserve the logo's original proportion */
+  display: block;
+}
+
+/* =========================
+SECCION HERO | EN: HERO SECTION
+========================= */
+
+/* Construye la seccion hero a pantalla completa con el degradado principal de fondo. | EN: Build the full-screen hero section with the main background gradient. */
+.hero {
+  --hero-bg-offset-x: 0px;
+  --hero-bg-offset-y: 0px;
+  --hero-orb-one-x: 0px;
+  --hero-orb-one-y: 0px;
+  --hero-orb-two-x: 0px;
+  --hero-orb-two-y: 0px;
+  min-height: calc(100vh - 100px); /* altura completa menos el navbar | EN: full height minus navbar */
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+
+  background: var(--gradient-section-strong); /* fondo degradado | EN: gradient background */
+  background-size: 190% 190%;
+  background-position: calc(50% + var(--hero-bg-offset-x)) calc(50% + var(--hero-bg-offset-y));
+  will-change: background-position;
+}
+
+/* Agrega halos suaves en movimiento para que el fondo del hero tenga mas vida sin ensuciar el contenido. | EN: Add soft moving halos so the hero background feels more alive without cluttering the content. */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Dibuja un halo grande que flota cerca de la esquina superior derecha. | EN: Draw a large halo floating near the top-right corner. */
+.hero::before {
+  width: min(46vw, 620px);
+  height: min(46vw, 620px);
+  top: -12%;
+  right: -10%;
+  background:
+    radial-gradient(circle, rgba(57, 255, 20, 0.3) 0%, rgba(57, 255, 20, 0.12) 34%, transparent 70%);
+  filter: blur(18px);
+  transform: translate3d(var(--hero-orb-one-x), var(--hero-orb-one-y), 0);
+  will-change: transform;
+}
+
+/* Dibuja un segundo halo mas largo y tenue en la zona inferior izquierda para equilibrar la escena. | EN: Draw a second longer, softer halo in the lower-left area to balance the scene. */
+.hero::after {
+  width: min(54vw, 720px);
+  height: min(34vw, 430px);
+  bottom: -16%;
+  left: -14%;
+  background:
+    radial-gradient(circle, rgba(120, 255, 80, 0.24) 0%, rgba(120, 255, 80, 0.1) 40%, transparent 74%);
+  filter: blur(28px);
+  transform: translate3d(var(--hero-orb-two-x), var(--hero-orb-two-y), 0);
+  will-change: transform;
+}
+
+/* Divide el area hero en columnas de contenido izquierda y derecha. | EN: Split the hero area into left and right content columns. */
+.hero-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between; /* distribucion izquierda/derecha | EN: left/right layout */
+  align-items: center;
+  gap: clamp(20px, 4vw, 60px); /* espaciado responsive | EN: responsive spacing */
+}
+
+/* Hace que el contenido principal del hero ocupe un lado del layout. | EN: Let the main hero content take up one side of the layout. */
+.hero-right {
+  flex: 1;
+}
+
+/* Coloca el gran texto decorativo de portfolio en el lado izquierdo. | EN: Hold the large decorative portfolio text on the left side. */
+.hero-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* Da estilo a la palabra decorativa grande usada como etiqueta del hero. | EN: Style the oversized display word used as the hero label. */
+.Hero-text {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 70px); /* responsive | EN: responsive */
+  line-height: 0.9;
+  color: var(--color-primary);
+  letter-spacing: 2px;
+  text-decoration: none;
+  will-change: transform, opacity;
+}
+
+/* Prepara el wordmark del hero para arrancar fuera de la pantalla por la izquierda. | EN: Prepare the hero wordmark to start outside the screen on the left. */
+.Hero-text.is-primed {
+  opacity: 0;
+  transform: translate3d(-130vw, 0, 0);
+  transition: none;
+}
+
+/* Lanza la entrada del wordmark hacia su posicion final sin afectar su ubicacion real. | EN: Launch the wordmark into its final position without affecting its real layout position. */
+.Hero-text.is-primed.is-entered {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition:
+    transform 1.25s cubic-bezier(0.2, 0.8, 0.16, 1),
+    opacity 0.75s ease;
+}
+
+
+/* Apila verticalmente el contenido de texto del hero. | EN: Stack the hero text content vertically. */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Da estilo al titulo principal del hero. | EN: Style the main hero heading. */
+.hero-content h1 {
+  font-family: var(--font-title);
+  font-size: var(--h1-size);
+  line-height: 0.9;
+  margin: 0;
+}
+
+/* Apila el nombre en dos lineas sin mover el bloque del hero fuera de su posicion actual. | EN: Stack the name into two lines without moving the hero block out of its current position. */
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.05em;
+}
+
+/* Mantiene Simon como primera linea visible y destacada. | EN: Keep Simon as the visible highlighted first line. */
+.hero-name-first {
+  display: block;
+}
+
+/* Mantiene el apellido y segundo nombre como una sola segunda linea debajo de Simon. | EN: Keep the surname and second name as a single second line below Simon. */
+.hero-name-last {
+  display: block;
+}
+
+/* Resalta el primer nombre con el color de acento. | EN: Highlight the first name with the accent color. */
+.name-highlight {
+  color: var(--color-primary);
+}
+
+/* Da estilo a la linea descriptiva corta debajo del titulo del hero. | EN: Style the short descriptive line below the hero title. */
+.hero-tagline {
+  font-family: var(--font-title);
+  font-size: var(--small-size);
+  margin-top: 10px;
+  color: var(--color-text-secondary);
+}
+
+/* Organiza los enlaces sociales en una sola fila debajo del contenido del hero. | EN: Arrange the social links in a single row below the hero content. */
+/* ENLACES SOCIALES DEL HERO | EN: HERO SOCIAL LINKS */
+
+.social-links {
+  font-size: 22px; /* aumenta el tamano del icono | EN: increase icon size */
+  margin-top: 20px;
+  display: flex;       /* coloca los iconos en una fila | EN: place icons on one row */
+  flex-direction: row; /* mantiene una distribucion horizontal | EN: keep a horizontal layout */
+  gap: 20px;           /* agrega espacio entre iconos | EN: add space between icons */
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Da estilo a cada enlace social como un boton de icono con borde. | EN: Style each social link as an outlined icon button. */
+.social-links a {
+  --orbit-frame-width: 1.5px;
+  font-size: 22px;
+  color: var(--color-primary);
+  text-decoration: none;
+  min-width: 52px;
+  min-height: 52px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+/* Rellena los botones sociales en hover para que se sientan mas interactivos. | EN: Fill social buttons on hover to make them feel more interactive. */
+.social-links a:hover {
+  background: var(--gradient-accent);
+  color: black;
+
+  transform: translateY(-3px) scale(1.05); /* agrega una elevacion de hover mas marcada | EN: add a stronger hover lift */
+  box-shadow: 0 6px 20px rgba(57, 255, 20, 0.5); /* agrega un brillo verde | EN: add a green glow */
+}
+
+/* Respeta preferencias de movimiento reducido para evitar animaciones innecesarias. | EN: Respect reduced-motion preferences to avoid unnecessary animation. */
+@media (prefers-reduced-motion: reduce) {
+  .Hero-text.is-primed,
+  .Hero-text.is-primed.is-entered,
+  .about .hero-profile img {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Permite animar el angulo del marco del retrato para crear un recorrido circular. | EN: Allow animating the portrait frame angle to create a circular path. */
+@property --profile-frame-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* Permite controlar por JavaScript el angulo del aro animado en los botones. | EN: Allow JavaScript to control the animated ring angle on buttons. */
+@property --button-frame-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* Dibuja un marco orbital compartido para los elementos que funcionan como botones. | EN: Draw a shared orbital frame for elements that behave like buttons. */
+.orbit-button {
+  --button-frame-angle: 0deg;
+  --orbit-frame-width: 2.2px;
+  position: relative;
+  isolation: isolate;
+  border-color: transparent !important;
+}
+
+/* Coloca el aro animado dentro del contorno del boton sin alterar su layout. | EN: Place the animated ring inside the button outline without altering layout. */
+.orbit-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: var(--orbit-frame-width);
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--button-frame-angle),
+    var(--color-primary) 0deg,
+    var(--color-primary) 100deg,
+    var(--color-frame-highlight) 152deg,
+    var(--color-primary-medium) 220deg,
+    var(--color-primary) 292deg,
+    var(--color-frame-highlight) 340deg,
+    var(--color-primary) 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.96;
+  transition:
+    opacity 0.18s ease,
+    padding 0.18s ease,
+    filter 0.18s ease;
+}
+
+/* Crea un brillo adicional que aparece con mas fuerza al presionar el boton. | EN: Create an additional glow that appears more strongly when the button is pressed. */
+.orbit-button::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at center, rgba(var(--color-frame-highlight-rgb), 0.34) 0%, rgba(var(--color-frame-highlight-rgb), 0.12) 34%, rgba(var(--color-frame-highlight-rgb), 0) 72%);
+  filter: blur(12px);
+  opacity: 0;
+  transform: scale(0.9);
+  transform-origin: center;
+  pointer-events: none;
+  z-index: -1;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    filter 0.18s ease;
+}
+
+/* Ilumina ciertos botones con un color distinto al entrar con el mouse o foco. | EN: Light selected buttons with a different color on mouse enter or focus. */
+.orbit-button.is-hover-lit {
+  box-shadow:
+    0 0 0 1px rgba(var(--color-hover-highlight-rgb), 0.22),
+    0 0 16px rgba(var(--color-hover-highlight-rgb), 0.16);
+}
+
+/* Refuerza el borde orbital con un brillo calido mientras el hover esta activo. | EN: Reinforce the orbital border with a warm glow while hover is active. */
+.orbit-button.is-hover-lit::before {
+  filter:
+    drop-shadow(0 0 8px rgba(var(--color-hover-highlight-rgb), 0.55))
+    drop-shadow(0 0 14px rgba(var(--color-hover-highlight-rgb), 0.24));
+}
+
+/* Expande un halo de hover diferente para los botones principales del hero y Open Folder. | EN: Expand a distinct hover halo for the main hero buttons and Open Folder. */
+.orbit-button.is-hover-lit::after {
+  opacity: 0.78;
+  transform: scale(1.04);
+  filter: blur(14px);
+  background:
+    radial-gradient(circle at center, rgba(var(--color-hover-highlight-rgb), 0.36) 0%, rgba(var(--color-hover-highlight-rgb), 0.14) 34%, rgba(var(--color-hover-highlight-rgb), 0) 72%);
+}
+
+/* Intensifica el aro y deja salir el color adicional cuando el boton se presiona. | EN: Intensify the ring and let the extra color emerge when the button is pressed. */
+.orbit-button.is-pressing::before {
+  padding: calc(var(--orbit-frame-width) + 1px);
+  opacity: 1;
+  filter:
+    drop-shadow(0 0 8px rgba(var(--color-frame-highlight-rgb), 0.5))
+    drop-shadow(0 0 14px rgba(57, 255, 20, 0.28));
+}
+
+/* Expande el brillo de acento para que el click se sienta mas vivo. | EN: Expand the accent glow so the click feels more alive. */
+.orbit-button.is-pressing::after {
+  opacity: 1;
+  transform: scale(1.08);
+  filter: blur(15px);
+}
+
+/* Suaviza el aro cuando un boton deshabilitado entra en estado de carga. | EN: Soften the ring when a disabled button enters a loading state. */
+.orbit-button:disabled::before {
+  opacity: 0.42;
+}
+
+/* Evita que el brillo extra quede activo en botones deshabilitados. | EN: Prevent the extra glow from staying active on disabled buttons. */
+.orbit-button:disabled::after {
+  opacity: 0;
+}
+/* =========================
+BOTON | EN: BUTTON
+========================= */
+
+/* Define la base compartida del boton usada en todo el sitio. | EN: Define the shared button shell used across the site. */
+.site-btn {
+  --orbit-frame-width: 2.2px;
+  margin-top: 20px;
+  padding: 10px 22px;
+
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: var(--font-body);
+
+  display: inline-block;
+  transition: var(--transition);
+}
+
+/* Da al llamado a la accion del hero el degradado brillante de la marca. | EN: Give the hero call-to-action the bright brand gradient. */
+.hero .site-btn {
+  background: var(--gradient-accent);
+  color: black;
+}
+
+/* Agrupa las acciones principales del hero sin alterar el bloque base. | EN: Group the main hero actions without altering the base block. */
+.hero-actions {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* Elimina el margen superior heredado cuando el boton vive dentro del grupo de acciones. | EN: Remove inherited top margin when the button lives inside the action group. */
+.hero-actions .site-btn {
+  margin-top: 0;
+}
+
+/* Crea una variacion secundaria del boton para acciones menos prioritarias. | EN: Create a secondary button variation for less primary actions. */
+.hero .site-btn-secondary {
+  background: transparent;
+  color: var(--color-text-main);
+  border: 1.5px solid rgba(57, 255, 20, 0.24);
+}
+
+/* Da feedback visual a la accion secundaria del hero. | EN: Give visual feedback to the hero secondary action. */
+.hero .site-btn-secondary:hover {
+  background: rgba(57, 255, 20, 0.08);
+  border-color: rgba(57, 255, 20, 0.44);
+}
+
+/* Agrega una elevacion y sombra sutil al hacer hover sobre los botones. | EN: Add a subtle lift and shadow when buttons are hovered. */
+.site-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+/* =========================
+TITULOS | EN: HEADINGS
+========================= */
+
+/* Aplica el estilo por defecto a los titulos de seccion. | EN: Apply the default style for section titles. */
+h2 {
+  font-family: var(--font-title);
+  font-size: var(--h2-size);
+  font-weight: 1000;
+  margin-bottom: 30px;
+  color: var(--color-primary);
+}
+
+/* =========================
+SECCION ABOUT | EN: ABOUT SECTION
+========================= */
+/* Define el color de fondo de la seccion About. | EN: Set the about section background color. */
+.about {
+  background: var(--gradient-section-soft); /* rellena todo el fondo | EN: fill all the background */
+}
+/* Coloca el texto About y el retrato lado a lado en pantallas grandes. | EN: Place the about text and portrait side by side on larger screens. */
+.about .site-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  padding-top: clamp(120px, 10vw, 180px);
+  padding-bottom: clamp(120px, 10vw, 180px);
+}
+
+/* Contiene el texto About y lo centra verticalmente. | EN: Hold the about copy and center it vertically. */
+/* BLOQUE DE TEXTO ABOUT | EN: ABOUT TEXT BLOCK */
+.about-text {
+  max-width: 100%;
+  flex: 1;
+
+  display: flex;              
+  flex-direction: column;     
+  justify-content: center;    
+}
+
+/* Mantiene compacto el espacio debajo del titulo About. | EN: Keep the spacing below the about heading compact. */
+.about-text h2 {
+  margin-bottom: 20px;
+}
+
+/* Da estilo al parrafo About para una lectura comoda. | EN: Style the about paragraph for comfortable reading. */
+.about-text p {
+  font-family: var(--font-body);
+  font-size: var(--body-size);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-bottom: 18px;
+}
+
+/* Posiciona el bloque de imagen de perfil junto al texto. | EN: Position the profile image block next to the text. */
+/* BLOQUE DE IMAGEN ABOUT | EN: ABOUT IMAGE BLOCK */
+.about .hero-profile {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+/* Da tamano y marco a la foto de perfil. | EN: Size and frame the profile photo. */
+.about .hero-profile img {
+  width: auto;
+  height: auto;
+  max-width: clamp(180px, 20vw, 270px);
+  max-height: clamp(280px, 34vw, 400px);
+  border-radius: var(--radius-main);
+  border: 5px solid transparent;
+  background:
+    linear-gradient(145deg, rgba(4, 10, 7, 0.94), rgba(7, 14, 10, 0.92)) padding-box,
+    conic-gradient(
+      from var(--profile-frame-angle),
+      var(--color-primary) 0deg,
+      var(--color-primary) 105deg,
+      var(--color-frame-highlight) 150deg,
+      var(--color-primary-medium) 215deg,
+      var(--color-primary) 285deg,
+      var(--color-frame-highlight) 330deg,
+      var(--color-primary) 360deg
+    ) border-box;
+  box-shadow:
+    0 0 0 1px rgba(234, 234, 234, 0.04),
+    0 0 22px rgba(57, 255, 20, 0.24),
+    0 0 38px rgba(var(--color-frame-highlight-rgb), 0.14);
+  display: block;
+}
+
+/* Construye la grilla interna con los subbloques del About. | EN: Build the inner grid with the About sub-blocks. */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 10px;
+}
+
+/* Da estilo a cada tarjeta corta dentro del bloque About. | EN: Style each short card inside the About block. */
+.about-card {
+  padding: 18px 20px;
+  border-radius: 24px;
+  border: 5px solid transparent;
+  background:
+    var(--gradient-panel-soft) padding-box,
+    conic-gradient(
+      from 0deg,
+      var(--color-primary) 0deg,
+      var(--color-primary) 105deg,
+      var(--color-frame-highlight) 150deg,
+      var(--color-primary-medium) 215deg,
+      var(--color-primary) 285deg,
+      var(--color-frame-highlight) 330deg,
+      var(--color-primary) 360deg
+    ) border-box;
+  box-shadow:
+    0 0 0 1px rgba(234, 234, 234, 0.04),
+    0 0 18px rgba(57, 255, 20, 0.16),
+    0 0 30px rgba(var(--color-frame-highlight-rgb), 0.08);
+  text-align: left;
+}
+
+/* Da estilo al titulo corto de cada tarjeta About. | EN: Style the short title of each About card. */
+.about-card h3 {
+  margin: 0 0 10px;
+  font-family: var(--font-title);
+  font-size: clamp(18px, 1.8vw, 22px);
+  color: var(--color-text-main);
+}
+
+/* Ajusta el texto interior de las tarjetas About. | EN: Tune the inner text of the About cards. */
+.about-card p {
+  margin: 0;
+  font-size: var(--small-size);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+/* =========================
+HOME MAP | EN: HOME MAP
+========================= */
+
+/* Crea la banda que resume la estructura del Home segun el site map. | EN: Create the band that summarizes the Home structure according to the site map. */
+.home-map {
+  padding: 0 0 100px;
+  background: var(--gradient-section-strong);
+}
+
+/* Envuelve el contenido del Home map en un panel consistente con el sitio. | EN: Wrap the Home map content in a panel consistent with the site. */
+.home-map-shell {
+  padding: clamp(28px, 4vw, 40px);
+  border: 1px solid rgba(57, 255, 20, 0.14);
+  border-radius: 36px;
+  background: var(--gradient-panel);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Controla el ancho del texto superior del Home map. | EN: Control the width of the Home map heading text. */
+.home-map-heading {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+/* Crea la grilla de bloques cortos del Home. | EN: Create the grid of short Home blocks. */
+.home-map-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* Da estilo a cada bloque resumen del Home. | EN: Style each Home summary block. */
+.overview-card {
+  padding: 20px;
+  border-radius: 26px;
+  border: 1px solid rgba(57, 255, 20, 0.14);
+  background: var(--gradient-panel-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Resalta la card de Call To Action para cerrar el bloque Home. | EN: Highlight the Call To Action card to close the Home block. */
+.overview-card-cta {
+  background: linear-gradient(180deg, rgba(14, 22, 14, 0.92), rgba(10, 16, 10, 0.84));
+}
+
+/* Da estilo a la pequena etiqueta numerada del Home map. | EN: Style the small numbered label of the Home map. */
+.overview-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(57, 255, 20, 0.18);
+  background: rgba(57, 255, 20, 0.08);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-primary-medium);
+}
+
+/* Da estilo a los titulos cortos de cada bloque Home. | EN: Style the short titles of each Home block. */
+.overview-card h3 {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: clamp(18px, 1.8vw, 24px);
+  color: var(--color-text-main);
+}
+
+/* Ajusta el texto de apoyo en cada card del Home map. | EN: Tune the supporting text in each Home map card. */
+.overview-card p {
+  margin: 0;
+  font-size: var(--small-size);
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+}
+
+/* =========================
+SERVICES | EN: SERVICES
+========================= */
+
+/* Crea la seccion dedicada a servicios dentro de la home. | EN: Create the dedicated services section inside the home. */
+.services {
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--gradient-section-feature);
+}
+
+/* Agrega un brillo decorativo suave a la seccion Services. | EN: Add a soft decorative glow to the Services section. */
+.services::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  left: -120px;
+  bottom: -100px;
+  background: radial-gradient(circle, rgba(57, 255, 20, 0.22) 0%, rgba(57, 255, 20, 0) 72%);
+  filter: blur(14px);
+  pointer-events: none;
+}
+
+/* Mantiene el contenido de Services por encima del brillo decorativo. | EN: Keep the Services content above the decorative glow. */
+.services .site-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Controla el ancho del encabezado de Services. | EN: Control the width of the Services heading. */
+.services-heading {
+  max-width: 760px;
+  margin-bottom: 36px;
+}
+
+/* Construye la grilla principal de disciplinas de servicio. | EN: Build the main grid of service disciplines. */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* Agrega una nota breve debajo del grid de servicios para incluir soporte adicional. | EN: Add a short note below the services grid to include extra support. */
+.services-note {
+  margin: 24px 0 0;
+  font-size: var(--small-size);
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  color: var(--color-primary-medium);
+}
+
+/* Da estilo a cada tarjeta de servicio. | EN: Style each service card. */
+.service-card {
+  padding: 24px;
+  border: 1px solid rgba(57, 255, 20, 0.16);
+  border-radius: 30px;
+  background: var(--gradient-panel-strong);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+  display: grid;
+  gap: 18px;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+/* Da una respuesta mas clara cuando se pasa el cursor por la card. | EN: Give a clearer response when the card is hovered. */
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(57, 255, 20, 0.32);
+  box-shadow: 0 24px 44px rgba(0, 0, 0, 0.28);
+}
+
+/* Organiza la cabecera visible de cada servicio como un bloque estatico. | EN: Arrange the visible header of each service as a static block. */
+.service-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+/* Etiqueta numerada de orden para cada servicio. | EN: Numbered order label for each service. */
+.service-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(57, 255, 20, 0.18);
+  background: rgba(var(--color-contrast-rgb), 0.1);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-primary-medium);
+}
+
+/* Agrupa el contenido textual principal del encabezado del servicio. | EN: Group the main text content of the service header. */
+.service-head-copy {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+}
+
+/* Da estilo a la linea superior que presenta el enfoque del servicio. | EN: Style the top line that presents the service focus. */
+.service-kicker {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary-medium);
+}
+
+/* Da estilo al nombre principal de cada servicio. | EN: Style the main name of each service. */
+.service-title {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: clamp(24px, 2vw, 30px);
+  color: var(--color-text-main);
+}
+
+/* Ajusta el resumen corto visible en la cabecera de cada servicio. | EN: Tune the short summary visible in each service header. */
+.service-summary {
+  font-size: var(--body-size);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+/* Mantiene visible el contenido extendido del servicio. | EN: Keep the extended service content visible. */
+.service-body {
+  display: block;
+}
+
+/* Envuelve el contenido interior del servicio con espaciado limpio. | EN: Wrap the inner service content with clean spacing. */
+.service-body-inner {
+  display: grid;
+  gap: 18px;
+}
+
+/* Construye la fila de datos rapidos dentro del servicio abierto. | EN: Build the quick-info row inside the open service. */
+.service-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+/* Da estilo a las tarjetas de datos rapidos del servicio. | EN: Style the quick-info cards of the service. */
+.service-meta-card {
+  padding: 16px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(57, 255, 20, 0.14);
+  background: rgba(57, 255, 20, 0.05);
+}
+
+/* Etiqueta pequeña de cada tarjeta de datos rapidos. | EN: Small label of each quick-info card. */
+.service-meta-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary-medium);
+}
+
+/* Ajusta el parrafo interno de las tarjetas meta del servicio. | EN: Tune the inner paragraph of the service meta cards. */
+.service-meta-card p {
+  margin: 0;
+  font-size: var(--small-size);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+/* Construye la lista interna de entregables por servicio. | EN: Build the inner list of deliverables per service. */
+.service-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+/* Da estilo a cada item de la lista de servicio. | EN: Style each service list item. */
+.service-list li {
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(57, 255, 20, 0.12);
+  background: rgba(57, 255, 20, 0.06);
+  display: grid;
+  gap: 6px;
+}
+
+/* Da estilo al titulo principal de cada item del servicio. | EN: Style the main title of each service item. */
+.service-item-title {
+  font-size: var(--small-size);
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+/* Da estilo al texto explicativo de cada item del servicio. | EN: Style the explanatory text of each service item. */
+.service-item-copy {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+}
+
+/* =========================
+WORK OVERVIEW | EN: WORK OVERVIEW
+========================= */
+
+/* Crea la fila de resumen previa al grid del portfolio. | EN: Create the summary row before the portfolio grid. */
+.work-overview {
+  margin-bottom: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* Da estilo a cada tarjeta resumen del bloque Work. | EN: Style each summary card inside the Work block. */
+.work-overview-card {
+  padding: 20px;
+  border-radius: 26px;
+  border: 5px solid transparent;
+  background:
+    var(--gradient-panel-soft) padding-box,
+    conic-gradient(
+      from 0deg,
+      var(--color-primary) 0deg,
+      var(--color-primary) 105deg,
+      var(--color-frame-highlight) 150deg,
+      var(--color-primary-medium) 215deg,
+      var(--color-primary) 285deg,
+      var(--color-frame-highlight) 330deg,
+      var(--color-primary) 360deg
+    ) border-box;
+  box-shadow:
+    0 0 0 1px rgba(234, 234, 234, 0.04),
+    0 0 18px rgba(57, 255, 20, 0.16),
+    0 0 30px rgba(var(--color-frame-highlight-rgb), 0.08);
+}
+
+/* Da estilo al titulo corto de cada resumen de Work. | EN: Style the short title of each Work summary. */
+.work-overview-card h3 {
+  margin: 0 0 10px;
+  font-family: var(--font-title);
+  font-size: clamp(20px, 1.8vw, 24px);
+  color: var(--color-text-main);
+}
+
+/* Ajusta el texto descriptivo de cada resumen de Work. | EN: Tune the descriptive text of each Work summary. */
+.work-overview-card p {
+  margin: 0;
+  font-size: var(--small-size);
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+}
+
+/* Separa el segundo encabezado interno del portfolio del resumen superior. | EN: Separate the second inner portfolio heading from the summary above it. */
+.portfolio-heading-secondary {
+  margin-top: 10px;
+}
+
+/* =========================
+PORTFOLIO | EN: PORTFOLIO
+========================= */
+/* Crea la seccion Portfolio con espaciado y un fondo por capas. | EN: Create the portfolio section with spacing and a layered background. */
+.portfolio {
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+
+  background: var(--gradient-section-feature);
+}
+
+
+
+/* Mantiene el contenido del portfolio por encima de los efectos decorativos del fondo. | EN: Keep the portfolio content above the decorative background effects. */
+.portfolio .site-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Agrega un brillo decorativo suave detras del contenido del portfolio. | EN: Add a soft decorative glow behind the portfolio content. */
+.portfolio::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  right: -120px;
+  top: 10%;
+  background: radial-gradient(circle, rgba(57, 255, 20, 0.24) 0%, rgba(57, 255, 20, 0) 72%);
+  filter: blur(14px);
+  pointer-events: none;
+}
+
+/* Limita el ancho del texto del encabezado de portfolio para mejorar la lectura. | EN: Limit the width of the portfolio heading copy for readability. */
+.portfolio-heading {
+  max-width: 760px;
+  margin-bottom: 36px;
+}
+
+/* Da estilo a la pequena etiqueta en mayusculas sobre el titulo de seccion. | EN: Style the small uppercase label above the section title. */
+.section-label {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary-medium);
+}
+
+/* Da formato al parrafo introductorio corto de la seccion Portfolio. | EN: Format the short introductory paragraph for the portfolio section. */
+.portfolio-intro {
+  max-width: 60ch;
+  margin: 0;
+  font-size: var(--body-size);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+/* Envuelve el area del portfolio dentro de un panel enmarcado tipo vidrio. | EN: Wrap the portfolio area inside a framed glass-like panel. */
+.portfolio-shell {
+  padding: clamp(28px, 4vw, 40px);
+  border: 1px solid rgba(57, 255, 20, 0.14);
+  border-radius: 36px;
+  background: var(--gradient-panel);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Construye el grid responsive usado para cards de categoria y proyecto. | EN: Build the responsive grid used for category and project cards. */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* Da estilo a una card de categoria como un panel de contenido clickeable. | EN: Style a category card as a clickable content panel. */
+.category-card {
+  min-height: 100%;
+  height: 100%;
+  padding: 22px;
+  border: 1px solid rgba(57, 255, 20, 0.18);
+  border-radius: var(--radius-main);
+  background: var(--gradient-panel-strong);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+/* Eleva ligeramente la card de categoria en hover. | EN: Raise the category card slightly on hover. */
+.category-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(57, 255, 20, 0.55);
+  box-shadow: 0 24px 44px rgba(0, 0, 0, 0.28);
+}
+
+/* Expande la card destacada de categoria a dos columnas del grid. | EN: Expand the featured category card across two grid columns. */
+.category-card-featured {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  align-items: center;
+  gap: 28px;
+}
+
+/* Crea el area de vista previa visual usada dentro de las cards de categoria. | EN: Create the visual preview area used inside category cards. */
+.category-visual {
+  position: relative;
+  min-height: 220px;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(57, 255, 20, 0.16);
+  isolation: isolate;
+}
+
+/* Da a la card destacada de categoria una vista previa visual mas alta. | EN: Give the featured category card a taller visual preview. */
+.category-card-featured .category-visual {
+  min-height: 310px;
+}
+
+/* Agrega un marco interior a la superficie de vista previa de categoria. | EN: Add an inner frame to the category preview surface. */
+.category-visual::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(234, 234, 234, 0.08);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Agrega una forma de acento luminosa detras de la vista previa de categoria. | EN: Add a glowing accent shape behind the category preview. */
+.category-visual::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: -60px;
+  bottom: -80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(57, 255, 20, 0.38) 0%, rgba(57, 255, 20, 0) 70%);
+  z-index: -1;
+}
+
+/* Aplica un tratamiento de fondo unico para el arte de la categoria Branding. | EN: Apply a unique background treatment for branding category artwork. */
+.visual-branding {
+  background:
+    linear-gradient(145deg, rgba(9, 13, 9, 0.96), rgba(16, 64, 18, 0.94)),
+    radial-gradient(circle at top right, rgba(120, 255, 80, 0.14), transparent 58%);
+}
+
+/* Aplica un tratamiento de fondo unico para el arte de social media. | EN: Apply a unique background treatment for social media artwork. */
+.visual-social {
+  background:
+    linear-gradient(145deg, rgba(8, 12, 8, 0.3), rgba(14, 54, 19, 0.56)),
+    radial-gradient(circle at top right, rgba(57, 255, 20, 0.14), rgba(5, 8, 5, 0.08) 55%);
+}
+
+/* Aplica un tratamiento de fondo unico para el arte de motion design. | EN: Apply a unique background treatment for motion design artwork. */
+.visual-motion {
+  background:
+    linear-gradient(145deg, rgba(8, 11, 8, 0.28), rgba(17, 66, 20, 0.56)),
+    radial-gradient(circle at center, rgba(57, 255, 20, 0.1), rgba(5, 8, 5, 0.12) 58%);
+}
+
+/* Aplica un tratamiento de fondo unico para el arte de web design. | EN: Apply a unique background treatment for web design artwork. */
+.visual-web {
+  background:
+    linear-gradient(145deg, rgba(7, 10, 7, 0.3), rgba(15, 60, 22, 0.52)),
+    linear-gradient(90deg, rgba(57, 255, 20, 0.08), rgba(5, 8, 5, 0.2));
+}
+
+/* Aplica un fondo abstracto para Information Design. | EN: Apply an abstract background for Information Design. */
+.visual-information {
+  background:
+    linear-gradient(135deg, rgba(7, 10, 7, 0.88), rgba(16, 64, 18, 0.58)),
+    repeating-linear-gradient(90deg, rgba(57, 255, 20, 0.16) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(0deg, rgba(var(--color-contrast-rgb), 0.1) 0 1px, transparent 1px 34px);
+}
+
+/* Aplica un fondo abstracto para Ideas and Images. | EN: Apply an abstract background for Ideas and Images. */
+.visual-ideas {
+  background:
+    radial-gradient(circle at 28% 34%, rgba(var(--color-contrast-rgb), 0.34), transparent 24%),
+    radial-gradient(circle at 70% 62%, rgba(57, 255, 20, 0.28), transparent 28%),
+    linear-gradient(145deg, rgba(8, 12, 8, 0.92), rgba(18, 54, 18, 0.62));
+}
+
+/* Aplica un fondo abstracto para Interaction Design. | EN: Apply an abstract background for Interaction Design. */
+.visual-interaction {
+  background:
+    radial-gradient(circle at 20% 22%, rgba(57, 255, 20, 0.24), transparent 20%),
+    linear-gradient(135deg, transparent 0 45%, rgba(var(--color-contrast-rgb), 0.18) 45% 48%, transparent 48% 100%),
+    linear-gradient(145deg, rgba(7, 10, 7, 0.92), rgba(15, 60, 22, 0.56));
+}
+
+/* Aplica un fondo abstracto para Editorial Design. | EN: Apply an abstract background for Editorial Design. */
+.visual-editorial {
+  background:
+    linear-gradient(90deg, rgba(57, 255, 20, 0.14) 0 12%, transparent 12% 16%, rgba(var(--color-contrast-rgb), 0.1) 16% 28%, transparent 28% 100%),
+    repeating-linear-gradient(0deg, rgba(234, 234, 234, 0.08) 0 2px, transparent 2px 18px),
+    linear-gradient(145deg, rgba(8, 11, 8, 0.94), rgba(16, 44, 16, 0.62));
+}
+
+/* Da estilo a la pequena etiqueta usada en las vistas previas de carpetas de categoria. | EN: Style the small tag used on category folder previews. */
+.folder-chip {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--gradient-panel-soft);
+  border: 1px solid rgba(57, 255, 20, 0.25);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary-medium);
+  z-index: 3;
+}
+
+/* Posiciona el arte opcional de vista previa dentro de los paneles visuales de categoria. | EN: Position optional preview artwork inside category visual panels. */
+.category-preview-image {
+  position: absolute;
+  right: 22px;
+  bottom: 0;
+  width: min(82%, 360px);
+  height: auto;
+  object-fit: contain;
+  z-index: 2;
+  filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.34));
+  pointer-events: none;
+}
+
+/* Permite que una imagen llamada desde el HTML llene todo el panel visual de la categoria. | EN: Let an image called from the HTML fill the full category visual panel. */
+.category-cover-preview {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+  filter: none;
+}
+
+/* Ajusta con precision el arte de vista previa de Branding dentro de la card destacada. | EN: Fine-tune the branding preview artwork inside the featured category card. */
+.branding-preview {
+  max-height: 92%;
+}
+
+/* Permite que el arte de Branding llene todo el panel visual. | EN: Let the branding artwork fill the entire visual panel. */
+.visual-branding-cover {
+  box-shadow: inset 0 0 0 1px rgba(234, 234, 234, 0.08); /* mantiene un marco sutil aunque el chip reemplace la decoracion interior | EN: keep a subtle frame even when the chip replaces the inner decoration */
+}
+
+/* Coloca la etiqueta Folder 01 sobre la imagen de Branding como en la card de Web / UI. | EN: Place the Folder 01 tag on top of the Branding image like the Web / UI card. */
+.visual-branding-cover::before {
+  content: "Folder 01";
+  position: absolute;
+  inset: auto;
+  top: 18px;
+  left: 18px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--gradient-panel-soft);
+  border: 1px solid rgba(57, 255, 20, 0.25);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary-medium);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Permite que el arte de Branding llene todo el panel visual. | EN: Let the branding artwork fill the entire visual panel. */
+.visual-branding-cover .branding-preview {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+  filter: none;
+}
+
+/* Apila el contenido de texto dentro de las cards de categoria. | EN: Stack the text content inside category cards. */
+.category-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+}
+
+/* Da estilo a los titulos de las cards de categoria. | EN: Style category card titles. */
+.category-copy h3 {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: clamp(22px, 2vw, 32px);
+  color: var(--color-text-main);
+}
+
+/* Da estilo al texto de apoyo dentro de las cards de categoria. | EN: Style the supporting text inside category cards. */
+.category-copy p {
+  margin: 0;
+  font-size: var(--body-size);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+/* Da estilo a la pequena etiqueta del tipo de proyecto sobre los titulos de categoria. | EN: Style the small project type label above category titles. */
+.category-copy .project-type {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--color-primary-medium);
+}
+
+/* Organiza la lista rapida de tags dentro de las cards de categoria. | EN: Lay out the quick tag list inside category cards. */
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+/* Da estilo a cada tag rapido de la lista de metadatos de categoria. | EN: Style each quick tag in the category metadata list. */
+.category-list span {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(57, 255, 20, 0.08);
+  border: 1px solid rgba(57, 255, 20, 0.14);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-primary-medium);
+}
+
+/* Da estilo al enlace de llamada a la accion usado dentro de las cards de proyecto y categoria. | EN: Style the call-to-action link used inside project and category cards. */
+.project-link {
+  --orbit-frame-width: 1.6px;
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(57, 255, 20, 0.28);
+  background: var(--gradient-accent);
+  color: black;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+/* Agrega feedback de hover al enlace de llamada a la accion de la card. | EN: Add hover feedback to the card call-to-action link. */
+.project-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(57, 255, 20, 0.3);
+}
+
+/* Da estilo a la nota corta que aparece debajo del grid del portfolio. | EN: Style the short note that appears below the portfolio grid. */
+.portfolio-note {
+  margin: 28px 0 0;
+  max-width: 62ch;
+  font-size: var(--small-size);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+/* =========================
+CONTACTO | EN: CONTACT
+========================= */
+
+/* Crea la seccion final de contacto con un espaciado simple. | EN: Create the closing contact section with simple spacing. */
+.contact {
+  padding: 80px 0;
+  background: var(--gradient-section-soft);
+}
+
+/* Construye el panel principal del contacto con dos columnas. | EN: Build the main contact panel with two columns. */
+.contact-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(24px, 4vw, 42px);
+  padding: clamp(28px, 4vw, 42px);
+  border: 1px solid rgba(57, 255, 20, 0.14);
+  border-radius: 36px;
+  background: var(--gradient-panel);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Apila verticalmente el contenido informativo del contacto. | EN: Stack the informational contact content vertically. */
+.contact-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Da estilo al texto introductorio del contacto. | EN: Style the introductory contact text. */
+.contact-intro {
+  margin: 0;
+  max-width: 42ch;
+  font-family: var(--font-body);
+  font-size: var(--body-size);
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+}
+
+/* Organiza los bloques cortos de datos de contacto. | EN: Arrange the short contact detail blocks. */
+.contact-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* Da estilo a cada tarjeta de detalle de contacto. | EN: Style each contact detail card. */
+.contact-detail-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(57, 255, 20, 0.12);
+  background: var(--gradient-panel-soft);
+}
+
+/* Da estilo a las etiquetas pequenas de datos de contacto. | EN: Style the small contact detail labels. */
+.contact-detail-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary-medium);
+}
+
+/* Da estilo al texto y enlaces dentro de los datos de contacto. | EN: Style text and links inside the contact details. */
+.contact-detail-card a,
+.contact-detail-card p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--small-size);
+  line-height: 1.6;
+  color: var(--color-text-main);
+  text-decoration: none;
+}
+
+/* Agrega un cambio de color suave al pasar por el correo. | EN: Add a subtle color change when hovering the email. */
+.contact-detail-card a:hover {
+  color: var(--color-primary);
+}
+
+/* Organiza los enlaces sociales cortos dentro de la tarjeta de contacto. | EN: Arrange the short social links inside the contact card. */
+.contact-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Da estilo a cada enlace social corto dentro de Contact. | EN: Style each short social link inside Contact. */
+.contact-socials a {
+  --orbit-frame-width: 1.5px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(57, 255, 20, 0.18);
+  background: rgba(57, 255, 20, 0.08);
+  color: var(--color-text-main);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+/* Agrega un hover claro a los chips sociales del contacto. | EN: Add a clear hover state to the contact social chips. */
+.contact-socials a:hover {
+  background: var(--gradient-accent);
+  color: black;
+}
+
+/* Da estilo al formulario como panel vertical. | EN: Style the form as a vertical panel. */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Construye una grilla para los campos cortos del formulario. | EN: Build a grid for the short form fields. */
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* Agrupa etiqueta y control en cada campo. | EN: Group the label and control in each field. */
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Hace que el campo de mensaje ocupe un bloque amplio. | EN: Make the message field span a larger block. */
+.contact-field-message {
+  width: 100%;
+}
+
+/* Da estilo al texto de las etiquetas del formulario. | EN: Style the form label text. */
+.contact-field span {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary-medium);
+}
+
+/* Da estilo visual a inputs y textarea del formulario. | EN: Style the form inputs and textarea visually. */
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  padding: 15px 16px;
+  border: 1px solid rgba(57, 255, 20, 0.14);
+  border-radius: 18px;
+  background: rgba(6, 8, 6, 0.78);
+  font-family: var(--font-body);
+  font-size: var(--small-size);
+  color: var(--color-text-main);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+/* Controla la altura minima del textarea para que respire mejor. | EN: Control the minimum height of the textarea so it breathes better. */
+.contact-field textarea {
+  min-height: 190px;
+  resize: vertical;
+}
+
+/* Suaviza el color del texto placeholder. | EN: Soften the placeholder text color. */
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+  color: rgba(234, 234, 234, 0.46);
+}
+
+/* Resalta el campo activo sin romper la estetica general. | EN: Highlight the active field without breaking the overall aesthetic. */
+.contact-field input:focus,
+.contact-field textarea:focus {
+  border-color: rgba(57, 255, 20, 0.45);
+  box-shadow: 0 0 0 4px rgba(57, 255, 20, 0.08);
+  background: rgba(8, 11, 8, 0.92);
+}
+
+/* Ajusta el boton del formulario para que no herede el margen superior del boton base. | EN: Adjust the form button so it does not inherit the base button top margin. */
+.contact-submit {
+  margin-top: 0;
+  background: var(--gradient-accent);
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+/* Centra el boton del formulario en desktop. | EN: Center the form button on desktop. */
+.contact-form .contact-submit {
+  align-self: flex-start;
+}
+
+/* Reserva una linea para mostrar mensajes del formulario sin mover demasiado el layout. | EN: Reserve a line to show form messages without shifting the layout too much. */
+.contact-form-status {
+  min-height: 1.6em;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--small-size);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+/* Marca visualmente los mensajes informativos del formulario. | EN: Visually mark informational form messages. */
+.contact-form-status[data-state="info"] {
+  color: var(--color-text-secondary);
+}
+
+/* Marca visualmente los mensajes de exito del formulario. | EN: Visually mark successful form messages. */
+.contact-form-status[data-state="success"] {
+  color: var(--color-primary-medium);
+}
+
+/* Marca visualmente los mensajes de error del formulario. | EN: Visually mark form error messages. */
+.contact-form-status[data-state="error"] {
+  color: rgb(255, 151, 151);
+}
+
+/* Da feedback al boton mientras el envio esta en proceso. | EN: Give the button feedback while submission is in progress. */
+.contact-submit:disabled {
+  opacity: 0.82;
+  cursor: wait;
+}
+
+/* Suaviza el boton cuando esta en estado de carga. | EN: Soften the button while it is in the loading state. */
+.contact-submit.is-loading {
+  box-shadow: none;
+  filter: saturate(0.9);
+}
+
+/* =========================
+FOOTER | EN: FOOTER
+========================= */
+
+/* Crea la franja final del sitio con un cierre consistente con el resto de la home. | EN: Create the final site band with a closing treatment consistent with the rest of the home. */
+.site-footer {
+  padding: 0 0 42px;
+  background: var(--gradient-section-strong);
+}
+
+/* Construye el panel principal del footer. | EN: Build the main footer panel. */
+.footer-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  padding: clamp(26px, 4vw, 38px);
+  border: 1px solid rgba(57, 255, 20, 0.14);
+  border-radius: 34px;
+  background: var(--gradient-panel);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Mantiene el bloque de marca del footer en formato vertical. | EN: Keep the footer brand block in a vertical layout. */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Ajusta el titulo principal del bloque de marca del footer. | EN: Tune the main title of the footer brand block. */
+.footer-brand-title {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1;
+  color: var(--color-text-main);
+}
+
+/* Da estilo al texto introductorio del footer. | EN: Style the introductory footer text. */
+.footer-intro {
+  margin: 0;
+  max-width: 40ch;
+  font-size: var(--small-size);
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+}
+
+/* Da estilo a cada columna corta del footer. | EN: Style each short footer column. */
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(57, 255, 20, 0.12);
+  background: var(--gradient-panel-soft);
+}
+
+/* Etiqueta superior de cada grupo del footer. | EN: Top label of each footer group. */
+.footer-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary-medium);
+}
+
+/* Organiza los enlaces del footer como una lista vertical. | EN: Arrange the footer links as a vertical list. */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Da estilo a los enlaces cortos del footer. | EN: Style the short footer links. */
+.footer-links a {
+  width: fit-content;
+  color: var(--color-text-main);
+  font-size: var(--small-size);
+  line-height: 1.5;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+/* Agrega un hover sutil a los enlaces del footer. | EN: Add a subtle hover state to the footer links. */
+.footer-links a:hover {
+  color: var(--color-primary);
+  transform: translateX(4px);
+}
+
+/* Construye la franja inferior del footer. | EN: Build the lower footer strip. */
+.footer-bottom {
+  margin-top: 18px;
+  padding: 18px 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Ajusta el texto pequeño del cierre del footer. | EN: Tune the small footer closing text. */
+.footer-bottom p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+/* Da estilo al enlace que lleva de vuelta al inicio. | EN: Style the link that takes the visitor back to the top. */
+.footer-top-link {
+  --orbit-frame-width: 1.6px;
+  position: fixed;
+  right: clamp(16px, 2.5vw, 32px);
+  bottom: clamp(16px, 2.5vw, 32px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(57, 255, 20, 0.35);
+  background:
+    linear-gradient(180deg, rgba(12, 18, 12, 0.96), rgba(6, 10, 6, 0.92)),
+    rgba(57, 255, 20, 0.08);
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(57, 255, 20, 0.08);
+  backdrop-filter: blur(10px);
+  color: var(--color-text-main);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(18px) scale(0.96);
+  z-index: 1100;
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease,
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Activa el boton flotante cuando la pagina ya bajo lo suficiente. | EN: Enable the floating button once the page has been scrolled enough. */
+.footer-top-link.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* Refuerza visualmente el enlace de volver arriba. | EN: Reinforce the back-to-top link visually. */
+.footer-top-link:hover {
+  background: var(--gradient-accent);
+  color: black;
+  box-shadow: 0 18px 34px rgba(57, 255, 20, 0.25);
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* Marca con claridad el foco por teclado para que siga siendo accesible. | EN: Clearly mark keyboard focus so it remains accessible. */
+.footer-top-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+/* Da una respuesta visual al momento exacto del click. | EN: Give a visual response at the exact moment of the click. */
+.footer-top-link:active {
+  transform: translateY(0) scale(0.96);
+}
+
+/* =========================
+RESPONSIVE | EN: RESPONSIVE
+========================= */
+
+/* Expande el ancho principal del contenido en pantallas grandes sin afectar tablet o mobile. | EN: Expand the main content width on large screens without affecting tablet or mobile. */
+@media (min-width: 1400px) {
+  :root {
+    --container-max-width: 1400px;
+  }
+}
+
+/* Usa un ajuste estandar del ancho de contenido por debajo del layout desktop completo. | EN: Use a standard content width step below the full desktop layout. */
+@media (max-width: 1200px) {
+  :root {
+    --container-max-width: 1040px;
+    --container-padding: 24px;
+  }
+}
+
+/* Ajusta el espaciado y el layout de cards para tablets y laptops mas pequenas. | EN: Adjust spacing and card layout for tablets and smaller laptops. */
+@media (max-width: 1024px) {
+  :root {
+    --container-max-width: 920px;
+    --container-padding: 24px;
+  }
+
+  /* Ajustes de layout para tablet | EN: Tablet layout adjustments */
+  .hero-container,
+  .about .site-container {
+    gap: 40px;
+  }
+
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-left,
+  .hero-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-content,
+  .hero-title {
+    align-items: center;
+  }
+
+  .Hero-text,
+  .hero-tagline,
+  .social-links {
+    justify-content: center;
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .home-map-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .work-overview {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .category-card-featured {
+    grid-column: span 2;
+    grid-template-columns: 1fr;
+  }
+
+  .contact-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-shell {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Convierte la navegacion de tablet en un menu lateral deslizante a la derecha. | EN: Turn the tablet navigation into a right-side sidebar menu. */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Deja el navbar de tablet listo para un panel deslizante. | EN: Keep the tablet navbar ready for a sliding panel. */
+  .main-nav {
+    overflow: visible;
+  }
+
+  /* Conserva el logo a la izquierda y el boton del menu a la derecha. | EN: Preserve the logo on the left and the menu button on the right. */
+  .nav-flex {
+    position: relative;
+  }
+
+  /* Reduce apenas el logo en tablet para mantener equilibrio con el menu. | EN: Slightly reduce the logo on tablet to keep balance with the menu. */
+  .nav-logo {
+    width: 160px;
+    min-width: 160px;
+  }
+
+  .nav-logo img {
+    max-width: 160px;
+    max-height: 64px;
+  }
+
+  /* Muestra el boton toggle en tablet y lo mantiene por encima del sidebar. | EN: Show the toggle button on tablet and keep it above the sidebar. */
+  .nav-toggle {
+    display: inline-flex;
+    position: relative;
+    z-index: 1201;
+  }
+
+  /* Convierte la lista del menu en un panel oculto off-canvas a la derecha. | EN: Turn the menu list into a hidden off-canvas panel on the right. */
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: min(360px, 72vw);
+    height: 100vh;
+    margin: 0;
+    padding: 112px 24px 28px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 14px;
+    list-style: none;
+    background: var(--gradient-panel-strong);
+    border-left: 1.5px solid rgba(57, 255, 20, 0.5);
+    box-shadow: -26px 0 60px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(108%);
+    transition: transform var(--transition), opacity var(--transition), visibility var(--transition);
+    z-index: 1150;
+  }
+
+  /* Hace que cada item del menu tablet ocupe el ancho del sidebar. | EN: Make every tablet menu item span the sidebar width. */
+  .nav-menu li {
+    width: 100%;
+  }
+
+  /* Da estilo a los enlaces de tablet como filas de sidebar en vez de botones superiores. | EN: Style tablet links like sidebar rows instead of top nav buttons. */
+  .nav-menu a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 18px;
+    border: 1px solid rgba(57, 255, 20, 0.14);
+    border-radius: 18px;
+    background: var(--gradient-panel-soft);
+    color: var(--color-text-main);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: none;
+  }
+
+  /* Agrega un hover que encaja con el estilo del sidebar tablet. | EN: Add hover feedback that fits the tablet sidebar style. */
+  .nav-menu a:hover {
+    color: var(--color-primary);
+    background: linear-gradient(90deg, rgba(57, 255, 20, 0.18), rgba(57, 255, 20, 0.04));
+    border-color: rgba(57, 255, 20, 0.45);
+    transform: translateX(-6px);
+    box-shadow: none;
+  }
+
+  /* Desliza el menu de tablet desde la derecha cuando esta abierto. | EN: Slide the tablet menu in from the right when it is open. */
+  .nav-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+}
+
+/* Reconstruye el layout para pantallas mobile y tablets pequenas. | EN: Rebuild the layout for mobile screens and small tablets. */
+@media (max-width: 768px) {
+  :root {
+    --container-max-width: 100%;
+    --container-padding: 20px;
+    --body-size: 16px;
+    --small-size: 13px;
+  }
+
+  /* Ajustes de layout para mobile y tablet pequena | EN: Mobile and small-tablet layout adjustments */
+  /* Evita que el navbar fijo se monte sobre el contenido de la pagina. | EN: Keep the fixed navbar from overlapping the page content. */
+  body {
+    padding-top: 100px;
+  }
+
+  /* Permite que el menu desplegable mobile se extienda fuera del navbar. | EN: Allow the mobile dropdown menu to extend outside the navbar. */
+  .main-nav {
+    overflow: visible;
+  }
+
+  /* Crea el contexto de posicionamiento para el menu mobile absoluto. | EN: Create the positioning context for the absolute mobile menu. */
+  .nav-flex {
+    position: relative;
+    gap: 20px;
+  }
+
+  /* Ajusta el logo para mobile sin perder presencia visual. | EN: Tune the logo for mobile without losing visual presence. */
+  .nav-logo {
+    width: 140px;
+    min-width: 140px;
+  }
+
+  .nav-logo img {
+    max-width: 140px;
+    max-height: 56px;
+  }
+
+  /* Muestra el boton hamburguesa en anchos mobile. | EN: Reveal the hamburger button on mobile widths. */
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  /* Convierte la lista de navegacion en un panel desplegable oculto para mobile. | EN: Turn the nav list into a hidden dropdown panel for mobile. */
+  .nav-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 12px;
+    padding: 20px;
+    margin: 0;
+    background: var(--gradient-panel-strong);
+    border: 1.5px solid var(--color-primary);
+    border-radius: 24px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: var(--transition);
+  }
+
+  /* Muestra el dropdown mobile cuando JavaScript agrega el estado abierto. | EN: Show the mobile dropdown when JavaScript adds the open state. */
+  .nav-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* Hace que cada enlace del menu mobile ocupe mejor el ancho del panel. | EN: Make each mobile nav link fill the menu width more cleanly. */
+  .nav-menu a {
+    display: block;
+    text-align: center;
+  }
+
+  /* Reduce la altura y el espaciado del hero para pantallas mas estrechas. | EN: Reduce hero height and spacing for narrower screens. */
+  .hero {
+    min-height: auto;
+    padding: 60px 0;
+  }
+
+  /* Apila verticalmente el contenido del hero en mobile. | EN: Stack the hero content vertically on mobile. */
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Permite que ambas columnas del hero ocupen todo el ancho disponible. | EN: Let both hero columns span the full available width. */
+  .hero-left,
+  .hero-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Centra el bloque de texto una vez que el hero se apila verticalmente. | EN: Center the text block once the hero stacks vertically. */
+  .hero-content {
+    align-items: center;
+  }
+
+  .entry-screen {
+    padding: 18px;
+  }
+
+  .entry-screen::before {
+    inset: 14px;
+    border-radius: 26px;
+  }
+
+  .entry-screen__panel {
+    padding: 32px 22px;
+  }
+
+  .entry-screen__eyebrow,
+  .entry-screen__status {
+    letter-spacing: 0.22em;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  /* Centra el gran wordmark del hero en pantallas pequenas. | EN: Center the oversized hero wordmark on smaller screens. */
+  .Hero-text {
+    text-align: center;
+  }
+
+  /* Centra y permite salto de linea en los enlaces sociales cuando el espacio horizontal es limitado. | EN: Center and wrap social links when horizontal space is limited. */
+  .social-links {
+    width: 100%;
+    margin-inline: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Coloca el retrato About sobre el texto en mobile. | EN: Stack the about portrait above the text on mobile. */
+  .about .site-container {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  /* Centra el texto About cuando la seccion pasa a una sola columna. | EN: Center the about copy when the section becomes single-column. */
+  .about-text {
+    align-items: center;
+  }
+
+  .about-grid,
+  .home-map-grid,
+  .services-grid,
+  .work-overview {
+    grid-template-columns: 1fr;
+  }
+
+  .service-meta {
+    grid-template-columns: 1fr;
+  }
+
+  /* Redimensiona y recentra la imagen de perfil para mobile. | EN: Resize and recenter the profile image for mobile. */
+  .about .hero-profile img {
+    max-width: clamp(190px, 52vw, 280px);
+    max-height: clamp(300px, 70vw, 420px);
+  }
+
+  /* Reduce el espaciado vertical de las secciones finales en mobile. | EN: Reduce vertical spacing for the closing sections on mobile. */
+  .portfolio,
+  .home-map,
+  .services,
+  .contact {
+    padding: 60px 0;
+  }
+
+  .contact-shell {
+    padding: 24px;
+  }
+
+  .contact-details,
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-copy {
+    text-align: center;
+  }
+
+  .home-map-heading,
+  .services-heading,
+  .portfolio-heading,
+  .footer-brand {
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .contact-intro {
+    margin-inline: auto;
+  }
+
+  .contact-form .contact-submit {
+    align-self: stretch;
+  }
+
+  .footer-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-column {
+    text-align: center;
+  }
+
+  .footer-links {
+    align-items: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Colapsa el grid del portfolio a una sola columna en mobile. | EN: Collapse the portfolio grid into one column on mobile. */
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Reinicia las cards destacadas para que todas usen el mismo ancho mobile. | EN: Reset featured cards so every card uses the same mobile width. */
+  .category-card,
+  .category-card-featured {
+    grid-column: auto;
+  }
+
+  /* Reduce el padding de las cards en pantallas pequenas. | EN: Tighten card padding for smaller screens. */
+  .category-card {
+    padding: 20px;
+  }
+
+  /* Acorta las areas de vista previa destacadas para que las cards se mantengan compactas en mobile. | EN: Shorten featured preview areas so cards stay compact on mobile. */
+  .category-card-featured .category-visual {
+    min-height: 250px;
+  }
+
+  .category-preview-image:not(.category-cover-preview) {
+    right: 14px;
+    width: min(78%, 300px);
+  }
+}
+
+/* Ajusta con precision los tamanos para pantallas mobile muy pequenas. | EN: Fine-tune sizing for very small mobile screens. */
+@media (max-width: 480px) {
+  /* Ajustes de layout para telefonos pequenos | EN: Small-phone layout adjustments */
+  /* Reduce variables de espaciado y radios de esquina en pantallas compactas. | EN: Reduce spacing variables and corner radii on compact screens. */
+  :root {
+    --container-max-width: 100%;
+    --container-padding: 16px;
+    --radius-main: 22px;
+    --radius-pill: 16px;
+    --body-size: 15px;
+    --small-size: 13px;
+  }
+
+  /* Conserva espacio para el navbar fijo en telefonos pequenos. | EN: Preserve space for the fixed navbar on small phones. */
+  body {
+    padding-top: 100px;
+  }
+
+  /* Reduce el logo para que quepa en anchos mobile estrechos. | EN: Shrink the logo to fit narrow mobile widths. */
+  .nav-logo {
+    width: 130px;
+    min-width: 130px;
+  }
+
+  .nav-logo img {
+    max-width: 130px;
+    max-height: 52px;
+  }
+
+  /* Reduce el espaciado del panel del menu mobile en telefonos pequenos. | EN: Tighten the mobile menu panel spacing on small phones. */
+  .nav-menu {
+    top: calc(100% + 10px);
+    padding: 16px;
+  }
+
+  /* Reduce el tamano de los enlaces del menu dentro del menu mobile compacto. | EN: Reduce nav link size inside the compact mobile menu. */
+  .nav-menu a {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  /* Reduce el wordmark del hero en pantallas muy pequenas. | EN: Scale down the hero wordmark for very small screens. */
+  .Hero-text {
+    font-size: clamp(34px, 12vw, 48px);
+  }
+
+  /* Normaliza el line-height del titulo cuando el espacio se vuelve ajustado. | EN: Normalize heading line-height when space becomes tight. */
+  .hero-content h1 {
+    line-height: 1;
+  }
+
+  /* Limita el ancho del tagline para que rompa en una medida legible. | EN: Limit tagline width so it wraps into a readable measure. */
+  .hero-tagline {
+    max-width: 28ch;
+  }
+
+  .entry-screen__title {
+    font-size: clamp(32px, 9vw, 44px);
+  }
+
+  .entry-screen__subtitle {
+    font-size: 14px;
+  }
+
+  /* Reduce el espaciado de enlaces sociales y el tamano de iconos en telefonos pequenos. | EN: Reduce social link spacing and icon size for small phones. */
+  .social-links {
+    font-size: 20px;
+    gap: 14px;
+    padding: 8px 10px;
+  }
+
+  /* Permite que los botones se expandan a todo el ancho para facilitar el toque. | EN: Let buttons expand to full width for easier tapping. */
+  .site-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Reduce el espaciado de la seccion About en pantallas muy pequenas. | EN: Tighten about section spacing on very small screens. */
+  .about .site-container {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  /* Reduce el espacio debajo del encabezado del portfolio en telefonos pequenos. | EN: Reduce spacing below the portfolio heading on small phones. */
+  .portfolio-heading {
+    margin-bottom: 28px;
+  }
+
+  /* Ajusta el contenedor enmarcado del portfolio en pantallas pequenas. | EN: Tighten the framed portfolio wrapper on small screens. */
+  .portfolio-shell {
+    padding: 24px 18px;
+  }
+
+  .home-map-shell,
+  .work-overview-card,
+  .about-card {
+    padding: 20px 18px;
+  }
+
+  .service-card {
+    padding: 20px 18px;
+  }
+
+  .contact-shell {
+    padding: 20px 16px;
+    border-radius: 28px;
+  }
+
+  .footer-shell {
+    padding: 24px 18px;
+    border-radius: 28px;
+  }
+
+  .footer-column {
+    padding: 18px 16px;
+  }
+
+  /* Reduce la altura de las vistas previas para cards mobile compactas. | EN: Reduce preview heights for compact mobile cards. */
+  .category-visual {
+    min-height: 190px;
+  }
+
+  /* Mantiene las vistas previas destacadas ligeramente mas altas que las estandar. | EN: Keep featured previews slightly taller than standard previews. */
+  .category-card-featured .category-visual {
+    min-height: 220px;
+  }
+
+  .category-preview-image:not(.category-cover-preview) {
+    right: 10px;
+    width: min(80%, 240px);
+  }
+
+  .contact-field input,
+  .contact-field textarea {
+    padding: 14px;
+  }
+
+  /* Usa un padding interno mas ajustado para las cards en las pantallas mas pequenas. | EN: Use tighter inner padding for cards on the smallest screens. */
+  .category-card {
+    padding: 18px;
+  }
+}
+
+/* Reduce animacion en la portada cuando la persona lo prefiere. | EN: Reduce animation on the cover when the person prefers it. */
+@media (prefers-reduced-motion: reduce) {
+  .entry-screen {
+    transition: none;
+  }
+
+  .entry-screen__progress::after {
+    animation: none;
+    transform: scaleX(1);
+  }
+}
