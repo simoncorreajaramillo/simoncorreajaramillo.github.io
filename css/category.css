@@ -103,7 +103,7 @@ img {
 .category-main {
   margin-top: 28px;
   display: grid;
-  grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(260px, 0.75fr) minmax(0, 1.25fr);
   gap: 26px;
 }
 
@@ -279,6 +279,13 @@ img {
   gap: 18px;
 }
 
+/* Agrupa cada proyecto en dos cuadros verticales: portada arriba y detalle abajo. | EN: Group each project in two vertical boxes: cover on top and details below. */
+.library-project-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
 /* Tarjeta clickeable que representa un subproyecto. | EN: Clickable card that represents a subproject. */
 .library-card {
   position: relative;
@@ -350,11 +357,98 @@ img {
   background: linear-gradient(145deg, rgba(var(--color-contrast-rgb), 0.22), rgba(5, 5, 5, 0.02));
 }
 
+/* Cuadro superior reservado para la portada del proyecto. | EN: Top box reserved for the project cover. */
+.library-card-cover {
+  min-height: clamp(220px, 22vw, 300px);
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.library-card-cover::before {
+  inset: 16px;
+  height: auto;
+}
+
+.library-card-cover .slot-preview-image,
+.library-card-cover .slot-preview-pair {
+  inset: 16px;
+  height: calc(100% - 32px);
+  max-height: none;
+}
+
+/* Cuadro inferior que contiene el proyecto como tal. | EN: Bottom box that contains the actual project info. */
+.library-card-details {
+  min-height: 172px;
+  justify-content: flex-start;
+  padding: 20px 18px 18px;
+  gap: 12px;
+}
+
+.library-card-details::before {
+  inset: 16px;
+  height: auto;
+}
+
+/* Permite usar una imagen real como preview superior de una card publicada. | EN: Allows a real image as the top preview of a published card. */
+.library-card-preview {
+  min-height: clamp(304px, 29vw, 398px);
+  justify-content: flex-start;
+  padding-top: clamp(188px, 18.6vw, 248px);
+  padding-bottom: 10px;
+  gap: 10px;
+}
+
+/* Coloca la portada del proyecto dentro del marco superior de la card. | EN: Places the project cover inside the top frame of the card. */
+.slot-preview-image {
+  position: absolute;
+  inset: 16px 16px auto;
+  z-index: 1;
+  width: calc(100% - 32px);
+  height: 52%;
+  max-height: clamp(164px, 20vw, 220px);
+  border-radius: 18px;
+  object-fit: cover;
+  object-position: top center;
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.28);
+}
+
+/* Permite que previews verticales o posters se vean completos dentro del marco superior. | EN: Allow vertical previews or posters to be shown fully inside the upper frame. */
+.slot-preview-image-fit {
+  object-fit: contain;
+  background: rgba(5, 5, 5, 0.4);
+}
+
+/* Muestra dos previews dentro de una card de galeria. | EN: Shows two previews inside a gallery card. */
+.slot-preview-pair {
+  position: absolute;
+  inset: 16px 16px auto;
+  z-index: 1;
+  height: 52%;
+  max-height: 166px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.slot-preview-pair img {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+  object-position: top center;
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.28);
+}
+
 /* Centra una card publicada que solo muestra el logo del proyecto. | EN: Center a published card that only shows the project logo. */
 .library-card-logo-only {
   justify-content: center;
   align-items: center;
   padding: 24px;
+}
+
+.library-card-cover.library-card-logo-only {
+  min-height: clamp(220px, 22vw, 280px);
 }
 
 /* Etiqueta pequena que identifica el bloque o tipo de contenido. | EN: Small label that identifies the block or type of content. */
@@ -409,17 +503,29 @@ img {
   margin-top: 4px;
 }
 
+/* Ordena las etiquetas debajo del preview real del proyecto. | EN: Arranges tags under the real project preview. */
+.slot-meta-preview {
+  width: calc(100% + 12px);
+  justify-content: center;
+  align-content: center;
+  min-height: 52px;
+  gap: 8px;
+  margin-top: 0;
+  margin-inline: -6px;
+}
+
 /* Da estilo a las etiquetas cortas del resumen del proyecto. | EN: Style the short project summary tags. */
 .slot-chip {
   padding: 7px 10px;
   border-radius: 999px;
   border: 1px solid rgba(57, 255, 20, 0.16);
   background: rgba(var(--color-contrast-rgb), 0.1);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-primary-medium);
+  white-space: nowrap;
 }
 
 /* Crea una pequena llamada a la accion al final de la card real. | EN: Create a small call to action at the end of the real project card. */
@@ -432,6 +538,25 @@ img {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-text-main);
+}
+
+.library-card-preview .slot-link {
+  margin-top: 0;
+}
+
+/* Convierte la llamada a accion en boton con el color principal del portfolio. | EN: Turns the call to action into a button using the portfolio main color. */
+.slot-link-button {
+  align-self: stretch;
+  min-height: 42px;
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: var(--gradient-accent);
+  color: black;
+  text-align: center;
+}
+
+.library-card-details .slot-link-button {
+  margin-top: auto;
 }
 
 /* Construye el layout vertical de una pagina interna de proyecto. | EN: Build the vertical layout of an inner project page. */
@@ -501,6 +626,341 @@ img {
   object-fit: contain;
 }
 
+/* Ajusta el hero visual de piezas verticales para que mantengan presencia sin dominar toda la fila. | EN: Adjust the visual hero of vertical pieces so they keep presence without dominating the full row. */
+.project-hero-visual-vertical img {
+  max-width: min(100%, 420px);
+  max-height: 680px;
+}
+
+/* Presenta piezas visuales dentro del mismo sistema del portfolio. | EN: Presents visual pieces inside the same portfolio system. */
+.project-pdf-cover {
+  min-height: 360px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Muestra la portada real del proyecto. | EN: Shows the real project cover. */
+.project-pdf-cover-image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-height: 560px;
+  border-radius: 18px;
+  object-fit: contain;
+  box-shadow: 0 22px 42px rgba(0, 0, 0, 0.3);
+}
+
+/* Organiza paneles de proyecto con acciones rapidas. | EN: Organizes project panels with quick actions. */
+.project-pdf-panel {
+  display: grid;
+  gap: 18px;
+}
+
+/* Encabezado del panel con acciones rapidas. | EN: Panel header with quick actions. */
+.project-pdf-toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.project-pdf-toolbar h2 {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: clamp(28px, 3vw, 40px);
+}
+
+.project-pdf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.project-pdf-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  background: rgba(5, 5, 5, 0.34);
+  color: var(--color-text-main);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: var(--transition);
+}
+
+.project-pdf-action:hover {
+  transform: translateY(-2px);
+  border-color: rgba(57, 255, 20, 0.42);
+}
+
+.project-pdf-action-primary {
+  border-color: transparent;
+  background: var(--gradient-accent);
+  color: black;
+}
+
+
+/* Hero visual para galerias de imagenes. | EN: Hero visual for image galleries. */
+.project-gallery-hero {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.project-gallery-hero img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  border-radius: 18px;
+  object-fit: contain;
+  object-position: top center;
+  background: rgba(5, 5, 5, 0.38);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
+}
+
+
+
+.portfolio-booklet {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 16px;
+  width: min(100%, 860px);
+  padding: clamp(16px, 2vw, 24px);
+  border-radius: 24px;
+  border: 1px solid rgba(57, 255, 20, 0.14);
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.18), transparent 48%, rgba(0, 0, 0, 0.18)),
+    rgba(5, 5, 5, 0.36);
+  box-shadow: 0 22px 42px rgba(0, 0, 0, 0.24);
+  overflow: hidden;
+  perspective: 1800px;
+}
+
+.portfolio-booklet-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(8px, 1.5vw, 16px);
+  align-items: stretch;
+}
+
+.portfolio-booklet-stage::before {
+  content: "";
+  position: absolute;
+  inset-block: 10px;
+  left: 50%;
+  width: 2px;
+  z-index: 2;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.42), transparent);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.45);
+}
+
+.portfolio-booklet-page {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(320px, 54vh, 620px);
+  padding: clamp(10px, 1.5vw, 18px);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 244, 238, 0.98));
+  box-shadow:
+    0 18px 32px rgba(0, 0, 0, 0.24),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.32s ease, opacity 0.32s ease, filter 0.32s ease;
+  overflow: hidden;
+}
+
+.portfolio-booklet-page-left {
+  transform-origin: right center;
+}
+
+.portfolio-booklet-page-right {
+  transform-origin: left center;
+}
+
+.portfolio-booklet[data-turn="next"] .portfolio-booklet-page-right {
+  transform: rotateY(-15deg) translateX(-8px);
+  opacity: 0.82;
+  filter: brightness(0.94);
+}
+
+.portfolio-booklet[data-turn="prev"] .portfolio-booklet-page-left {
+  transform: rotateY(15deg) translateX(8px);
+  opacity: 0.82;
+  filter: brightness(0.94);
+}
+
+.portfolio-booklet-page img {
+  display: block;
+  width: 100%;
+  max-height: 560px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.portfolio-booklet-page img[hidden] {
+  display: none;
+}
+
+.portfolio-booklet-meta {
+  display: flex;
+  justify-content: center;
+}
+
+.portfolio-booklet-count {
+  min-height: 34px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(5, 5, 5, 0.72);
+  color: var(--color-text-main);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.portfolio-booklet-control {
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  border-radius: 999px;
+  background: rgba(5, 5, 5, 0.68);
+  color: var(--color-text-main);
+  font-size: 34px;
+  line-height: 1;
+  transform: translateY(-50%);
+  transition: var(--transition);
+}
+
+.portfolio-booklet-control:hover:not(:disabled) {
+  border-color: rgba(57, 255, 20, 0.48);
+  background: rgba(57, 255, 20, 0.14);
+}
+
+.portfolio-booklet-control:disabled {
+  opacity: 0.34;
+  cursor: not-allowed;
+}
+
+.portfolio-booklet-control-prev {
+  left: 14px;
+}
+
+.portfolio-booklet-control-next {
+  right: 14px;
+}
+
+.portfolio-booklet-pages {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .portfolio-booklet-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-booklet-stage::before,
+  .portfolio-booklet-page-left:has(img[hidden]) {
+    display: none;
+  }
+
+  .portfolio-booklet-page {
+    min-height: 300px;
+  }
+}
+
+/* Panel y grid para mostrar imagenes en pares. | EN: Panel and grid for showing images in pairs. */
+.project-gallery-panel {
+  display: grid;
+  gap: 22px;
+}
+
+.project-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* Permite que una galeria conserve la proporcion real de cada imagen sin forzar todas las cards al mismo alto. | EN: Allow a gallery to keep each image's real proportion without forcing every card to the same height. */
+.project-gallery-grid-fluid {
+  align-items: start;
+}
+
+.project-gallery-grid-fluid .project-gallery-card {
+  aspect-ratio: auto;
+  min-height: 0;
+  width: min(100%, var(--gallery-card-width, 100%));
+  padding: clamp(14px, 1.6vw, 20px);
+  border: 1px solid rgba(57, 255, 20, 0.14);
+  border-radius: 24px;
+  background: var(--category-card-surface);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.2);
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+}
+
+.project-gallery-grid-fluid .project-gallery-card img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  object-position: top center;
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+}
+
+.project-gallery-card {
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  padding: clamp(10px, 1.4vw, 16px);
+  border-radius: 24px;
+  border: 1px solid rgba(57, 255, 20, 0.14);
+  background: var(--category-card-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.2);
+}
+
+.project-gallery-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+/* Presenta una galeria completa como una sola pieza de proyecto. | EN: Presents a full gallery as one project piece. */
+.project-gallery-board-card {
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(57, 255, 20, 0.14);
+  background: var(--category-card-surface);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.2);
+}
+
+.project-gallery-board-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* Permite destacar la ultima card de la historia del proyecto. | EN: Allow the last story card to stand out. */
 .project-story-highlight {
   grid-column: span 2;
@@ -552,6 +1012,21 @@ img {
   }
 
   .library-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-pdf-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .project-pdf-actions,
+  .project-pdf-action {
+    width: 100%;
+  }
+
+  .project-gallery-hero,
+  .project-gallery-grid {
     grid-template-columns: 1fr;
   }
 }

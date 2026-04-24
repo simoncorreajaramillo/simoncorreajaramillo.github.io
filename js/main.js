@@ -1,3 +1,47 @@
+// Guarda la referencia de la pantalla de entrada para cubrir el primer instante de la home. | EN: Store the entry screen reference so it can cover the first instant of the home page.
+const entryScreen = document.querySelector('[data-entry-screen]');
+// Solo activa la portada de entrada si realmente existe en la pagina. | EN: Only activate the entry cover if it actually exists on the page.
+if (entryScreen) {
+  // Reusa la referencia al body para bloquear y liberar el scroll durante la entrada. | EN: Reuse the body reference to lock and release scrolling during entry.
+  const pageBody = document.body;
+  // Respeta la preferencia de menos movimiento para reducir el tiempo visible. | EN: Respect the reduced-motion preference to shorten the visible time.
+  const prefersReducedEntryMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  // Controla el tiempo automatico de salida y evita cerrar dos veces. | EN: Control the automatic exit timing and avoid closing twice.
+  const entryExitDelay = prefersReducedEntryMotion.matches ? 1200 : 3600;
+  const entryExitDuration = prefersReducedEntryMotion.matches ? 0 : 850;
+  let isEntryClosed = false;
+  let entryExitTimerId = 0;
+
+  // Agrupa el cierre visual y la liberacion del scroll en una sola rutina. | EN: Group the visual close and scroll release into a single routine.
+  const closeEntryScreen = () => {
+    // Sale si la portada ya esta cerrada para no repetir clases ni timers. | EN: Exit if the cover is already closed so classes and timers are not repeated.
+    if (isEntryClosed) {
+      return;
+    }
+
+    isEntryClosed = true;
+    window.clearTimeout(entryExitTimerId);
+    pageBody.classList.remove('is-intro-active');
+    entryScreen.classList.add('is-exiting');
+
+    window.setTimeout(() => {
+      entryScreen.classList.add('is-hidden');
+      window.removeEventListener('keydown', handleEntryScreenKeydown);
+    }, entryExitDuration);
+  };
+
+  // Permite saltar la pantalla de entrada con teclado sin depender del mouse. | EN: Let the entry screen be skipped with the keyboard without depending on the mouse.
+  const handleEntryScreenKeydown = (event) => {
+    if (event.key === 'Escape' || event.key === 'Enter' || event.key === ' ') {
+      closeEntryScreen();
+    }
+  };
+
+  entryExitTimerId = window.setTimeout(closeEntryScreen, entryExitDelay);
+  entryScreen.addEventListener('click', closeEntryScreen, { once: true });
+  window.addEventListener('keydown', handleEntryScreenKeydown);
+}
+
 // Guarda una referencia al boton hamburguesa del menu responsive. | EN: Stores a reference to the hamburger button of the responsive menu.
 const navToggle = document.querySelector('.nav-toggle');
 // Guarda una referencia a la lista del menu que se abre y se cierra. | EN: Stores a reference to the menu list that opens and closes.

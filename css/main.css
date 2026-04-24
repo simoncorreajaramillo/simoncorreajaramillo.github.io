@@ -125,6 +125,180 @@ img {
   max-width: 100%;
 }
 
+/* Bloquea el scroll mientras la pantalla de entrada esta activa. | EN: Lock scroll while the entry screen is active. */
+body.is-intro-active {
+  overflow: hidden;
+}
+
+/* Cubre por completo la home en el primer instante de entrada. | EN: Fully cover the home during the first instant of entry. */
+.entry-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 2200;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(57, 255, 20, 0.2), transparent 28%),
+    radial-gradient(circle at 82% 78%, rgba(var(--color-contrast-rgb), 0.18), transparent 30%),
+    linear-gradient(145deg, rgba(4, 5, 4, 0.98), rgba(8, 18, 8, 0.98) 56%, rgba(4, 12, 4, 0.99));
+  transition:
+    opacity 0.85s ease,
+    visibility 0.85s ease,
+    transform 0.85s ease;
+}
+
+/* Suma un marco y un velo suave para que la entrada se vea mas terminada. | EN: Add a frame and a soft veil so the entry screen feels more finished. */
+.entry-screen::before,
+.entry-screen::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.entry-screen::before {
+  inset: clamp(18px, 3vw, 34px);
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  border-radius: 34px;
+  box-shadow:
+    0 0 0 1px rgba(var(--color-contrast-rgb), 0.08) inset,
+    0 0 60px rgba(57, 255, 20, 0.08);
+}
+
+.entry-screen::after {
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.04) 22%, transparent 44%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 30%);
+  opacity: 0.85;
+}
+
+/* Agrupa el contenido visible de la portada de entrada. | EN: Group the visible content of the entry cover. */
+.entry-screen__panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 760px);
+  padding: clamp(36px, 6vw, 56px);
+  border: 1px solid rgba(57, 255, 20, 0.24);
+  border-radius: clamp(26px, 4vw, 38px);
+  background:
+    linear-gradient(180deg, rgba(10, 14, 10, 0.88), rgba(5, 8, 5, 0.84)),
+    radial-gradient(circle at top, rgba(57, 255, 20, 0.08), transparent 52%);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.45),
+    0 0 44px rgba(57, 255, 20, 0.12);
+  text-align: center;
+  backdrop-filter: blur(16px);
+}
+
+/* Da un acabado en pildora al texto superior de la entrada. | EN: Give the top entry label a pill finish. */
+.entry-screen__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 20px;
+  padding: 8px 16px;
+  border: 1px solid rgba(57, 255, 20, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(234, 234, 234, 0.76);
+  font-family: var(--font-title);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+/* Controla el tamano y brillo del logo dentro de la portada. | EN: Control the size and glow of the logo inside the cover. */
+.entry-screen__logo {
+  width: clamp(88px, 10vw, 136px);
+  margin: 0 auto 22px;
+  filter:
+    drop-shadow(0 0 14px rgba(57, 255, 20, 0.18))
+    drop-shadow(0 0 30px rgba(var(--color-contrast-rgb), 0.12));
+}
+
+/* Da presencia al nombre principal de la portada. | EN: Give presence to the main name on the cover. */
+.entry-screen__title {
+  margin: 0;
+  color: var(--color-text-main);
+  font-family: var(--font-title);
+  font-size: clamp(38px, 6.6vw, 80px);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.94;
+  text-transform: uppercase;
+}
+
+/* Muestra una descripcion corta debajo del nombre principal. | EN: Show a short description below the main name. */
+.entry-screen__subtitle {
+  width: min(100%, 560px);
+  margin: 18px auto 0;
+  color: rgba(234, 234, 234, 0.72);
+  font-size: clamp(15px, 1.5vw, 19px);
+  line-height: 1.65;
+}
+
+/* Refuerza visualmente el estado de carga de la portada. | EN: Visually reinforce the cover loading state. */
+.entry-screen__status {
+  margin: 26px 0 0;
+  color: rgba(234, 234, 234, 0.56);
+  font-family: var(--font-title);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+/* Dibuja una barra simple para el paso de entrada. | EN: Draw a simple bar for the entry transition. */
+.entry-screen__progress {
+  display: block;
+  width: min(100%, 260px);
+  height: 4px;
+  margin: 16px auto 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.entry-screen__progress::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  transform: scaleX(0.08);
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-contrast));
+  animation: entry-screen-progress 3.1s ease-out forwards;
+}
+
+/* Desvanece y suelta la portada cuando el JS indica salida. | EN: Fade and release the cover when JS signals exit. */
+.entry-screen.is-exiting {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.02);
+}
+
+.entry-screen.is-hidden {
+  display: none;
+}
+
+/* Anima el avance decorativo de la portada. | EN: Animate the decorative progress advance on the cover. */
+@keyframes entry-screen-progress {
+  from {
+    opacity: 0.4;
+    transform: scaleX(0.08);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
 /* Centra el contenido y mantiene el ancho de pagina bajo control. | EN: Center content and keep the page width under control. */
 .site-container {
   width: 100%;
@@ -2166,6 +2340,24 @@ RESPONSIVE | EN: RESPONSIVE
     align-items: center;
   }
 
+  .entry-screen {
+    padding: 18px;
+  }
+
+  .entry-screen::before {
+    inset: 14px;
+    border-radius: 26px;
+  }
+
+  .entry-screen__panel {
+    padding: 32px 22px;
+  }
+
+  .entry-screen__eyebrow,
+  .entry-screen__status {
+    letter-spacing: 0.22em;
+  }
+
   .hero-actions {
     justify-content: center;
   }
@@ -2350,6 +2542,14 @@ RESPONSIVE | EN: RESPONSIVE
     max-width: 28ch;
   }
 
+  .entry-screen__title {
+    font-size: clamp(32px, 9vw, 44px);
+  }
+
+  .entry-screen__subtitle {
+    font-size: 14px;
+  }
+
   /* Reduce el espaciado de enlaces sociales y el tamano de iconos en telefonos pequenos. | EN: Reduce social link spacing and icon size for small phones. */
   .social-links {
     font-size: 20px;
@@ -2426,5 +2626,17 @@ RESPONSIVE | EN: RESPONSIVE
   /* Usa un padding interno mas ajustado para las cards en las pantallas mas pequenas. | EN: Use tighter inner padding for cards on the smallest screens. */
   .category-card {
     padding: 18px;
+  }
+}
+
+/* Reduce animacion en la portada cuando la persona lo prefiere. | EN: Reduce animation on the cover when the person prefers it. */
+@media (prefers-reduced-motion: reduce) {
+  .entry-screen {
+    transition: none;
+  }
+
+  .entry-screen__progress::after {
+    animation: none;
+    transform: scaleX(1);
   }
 }

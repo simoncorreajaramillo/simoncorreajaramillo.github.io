@@ -21,8 +21,37 @@
   <link rel="stylesheet" href="css/main.css">
   <!-- Conecta el archivo JS principal y lo difiere para que cargue despues del HTML. | EN: Connects the main JS file and defers it so it loads after the HTML. -->
   <script src="js/main.js" defer></script>
+  <noscript>
+    <style>
+      body.is-intro-active {
+        overflow: auto;
+      }
+
+      .entry-screen {
+        display: none;
+      }
+    </style>
+  </noscript>
 </head>
-<body>
+<body class="is-intro-active">
+
+  <!-- Pantalla de entrada que cubre la home en el primer instante de carga. | EN: Entry screen that covers the home during the first instant of page load. -->
+  <div class="entry-screen" data-entry-screen aria-hidden="true">
+    <div class="entry-screen__panel">
+      <!-- Etiqueta corta para presentar el sitio al entrar. | EN: Short label used to introduce the site on entry. -->
+      <p class="entry-screen__eyebrow">Portfolio</p>
+      <!-- Logo principal mostrado dentro de la entrada. | EN: Main logo shown inside the entry screen. -->
+      <img src="images/Logo.png" alt="" class="entry-screen__logo">
+      <!-- Nombre principal visible antes de entrar al contenido. | EN: Main name shown before entering the content. -->
+      <p class="entry-screen__title">Simon Correa Jaramillo</p>
+      <!-- Subtitulo breve alineado con el enfoque del hero. | EN: Short subtitle aligned with the hero focus. -->
+      <p class="entry-screen__subtitle">Graphic designer focused on social media, motion graphics and web design.</p>
+      <!-- Estado visual corto para reforzar la idea de entrada. | EN: Short visual status to reinforce the entry idea. -->
+      <p class="entry-screen__status">Loading portfolio</p>
+      <!-- Barra visual de progreso decorativa. | EN: Decorative visual progress bar. -->
+      <span class="entry-screen__progress" aria-hidden="true"></span>
+    </div>
+  </div>
 
   <!-- Barra de navegacion fija en la parte superior. | EN: Fixed navigation bar at the top. -->
   <nav class="main-nav">
@@ -162,7 +191,7 @@
       <!-- Bloque de la imagen de perfil. | EN: Profile image block. -->
       <div class="hero-profile">
         <!-- Imagen principal del perfil personal. | EN: Main personal profile image. -->
-        <img src="images/profile.png" alt="Profile Photo">
+        <img src="images/profile.jpg" alt="Profile Photo">
       </div>
     </div>
   </section>
@@ -450,7 +479,7 @@
             <!-- Area visual derecha de la card Branding. | EN: Right visual area of the Branding card. -->
             <div class="category-visual visual-branding visual-branding-cover">
               <!-- Imagen principal que llena el cuadro visual de Branding. | EN: Main image that fills the Branding visual box. -->
-              <img class="category-preview-image branding-preview" src="images/branding.png" alt="Brand Design preview artwork">
+              <img class="category-preview-image branding-preview" src="images/branding.jpg" alt="Brand Design preview artwork">
             </div>
           </a>
           <!-- Card de la categoria Web / UI. | EN: Card for the Web / UI category. -->
@@ -460,7 +489,7 @@
               <!-- Etiqueta numerada para mostrar el orden de la carpeta. | EN: Numbered tag that shows the folder order. -->
               <span class="folder-chip">Folder 02</span>
               <!-- Imagen de vista previa de la categoria Web / UI. | EN: Preview image for the Web / UI category. -->
-              <img class="category-preview-image category-cover-preview" src="images/web-ui-ux.png" alt="Web Design preview artwork">
+              <img class="category-preview-image category-cover-preview" src="images/web-ui-ux.jpg" alt="Web Design preview artwork">
             </div>
 
             <!-- Bloque de texto de la card Web / UI. | EN: Text block of the Web / UI card. -->
@@ -483,7 +512,7 @@
               <!-- Etiqueta numerada para mostrar el orden de la carpeta. | EN: Numbered tag that shows the folder order. -->
               <span class="folder-chip">Folder 03</span>
               <!-- Imagen de vista previa de la categoria Campaign Design. | EN: Preview image for the Campaign Design category. -->
-              <img class="category-preview-image category-cover-preview" src="images/campaigns (1).png" alt="Campaign Design preview artwork">
+              <img class="category-preview-image category-cover-preview" src="images/campaigns (1).jpg" alt="Campaign Design preview artwork">
             </div>
 
             <!-- Bloque de texto de la card Campaign Design. | EN: Text block of the Campaign Design card. -->
@@ -506,7 +535,7 @@
               <!-- Etiqueta numerada para mostrar el orden de la carpeta. | EN: Numbered tag that shows the folder order. -->
               <span class="folder-chip">Folder 04</span>
               <!-- Imagen de vista previa de la categoria Motion. | EN: Preview image for the Motion category. -->
-              <img class="category-preview-image category-cover-preview" src="images/motion (2).png" alt="Motion Design preview artwork">
+              <img class="category-preview-image category-cover-preview" src="images/motion (2).jpg" alt="Motion Design preview artwork">
             </div>
 
             <!-- Bloque de texto de la card Motion. | EN: Text block of the Motion card. -->
